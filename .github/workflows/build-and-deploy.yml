@@ -1,0 +1,63 @@
+name: Build & Deploy DOCX → HTML (with equations)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'theme/**'
+      - 'Dockerfile'
+      - 'scripts/**'
+      - '.github/workflows/build-and-deploy.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t docx2html:ci .
+
+      - name: Convert DOCX → HTML inside container
+        env:
+          SRC_DOC: src/document.docx
+          OUT_DIR: site
+          OUT_HTML: index.html
+          CSS_PATH: theme/styles.css
+          # Choose your math engine: mathjax (default) or katex
+          MATH_ENGINE: mathjax
+          # Override CDN URLs if needed
+          MATHJAX_URL: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+          KATEX_URL: https://cdn.jsdelivr.net/npm/katex@0.16.11/dist
+          TITLE: "My Document"
+        run: |
+          mkdir -p site
+          docker run --rm                 -e SRC_DOC                 -e OUT_DIR                 -e OUT_HTML                 -e CSS_PATH                 -e MATH_ENGINE                 -e MATHJAX_URL                 -e KATEX_URL                 -e TITLE                 -v "$PWD":/work                 -w /work                 docx2html:ci
+
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
