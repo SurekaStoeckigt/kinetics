@@ -1,0 +1,43 @@
+name: Build DOCX → HTML and publish to gh-pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'theme/**'
+      - 'scripts/**'
+      - 'Dockerfile'
+      - '.github/workflows/gh-pages.yml'
+  workflow_dispatch: {}
+
+# We push to the gh-pages branch, so we need write permission
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Build ONLY the pandoc builder stage to generate site/
+      - name: Build site with Docker builder
+        run: |
+          docker build --target builder \
+            -t site-builder:latest \
+            --build-arg SRC_DOC=src/Kinetics_Appendix.docx \
+            .
+          id=$(docker create site-builder:latest)
+          mkdir -p site
+          docker cp "$id":/app/site ./site
+          docker rm "$id"
+          test -f site/index.html || (echo "Missing site/index.html!" && exit 1)
+
+      # Publish site/ to gh-pages branch
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: site
+          clean: true
