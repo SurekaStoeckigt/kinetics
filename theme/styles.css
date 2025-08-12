@@ -1,13 +1,6 @@
 html { scroll-behavior: smooth; }
-body {
-  max-width: 860px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.6;
-}
+body { max-width: 860px; margin: 2rem auto; padding: 0 1rem; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; }
 h1, h2, h3 { line-height: 1.25; }
 img { max-width: 100%; height: auto; }
 nav#TOC { background: #f6f8fa; padding: 1rem; border-radius: 0.5rem; }
-/* Math block spacing (MathJax or KaTeX) */
-.katex-display, .MJXc-display, .mjx-container[display="true"] { margin: 1rem 0; }
+.mjx-container[display="true"] { margin: 1rem 0; }
