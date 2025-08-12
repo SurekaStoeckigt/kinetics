@@ -31,6 +31,7 @@ cat > "$HEAD_FILE" <<'EOF'
 </script>
 EOF
 echo "<script src=\"$MATHJAX_URL\" id=\"MathJax-script\" async></script>" >> "$HEAD_FILE"
+touch "$OUT_DIR/.nojekyll"
 
 if [ -f "$SRC_DOC" ]; then
   pandoc "$SRC_DOC" \

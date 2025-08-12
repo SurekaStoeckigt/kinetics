@@ -36,6 +36,8 @@ jobs:
           docker cp "$id":/app/site/. ./site
 
           docker rm "$id"
+          echo "Site tree:"; find site -maxdepth 2 -print
+          test -f site/index.html || (echo "Missing site/index.html!" && exit 1)
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
         with:
