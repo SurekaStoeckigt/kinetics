@@ -31,8 +31,10 @@ jobs:
       - name: Extract site/ from image
         run: |
           id=$(docker create site-builder:latest)
+          rm -rf site
           mkdir -p site
-          docker cp "$id":/app/site ./site
+          docker cp "$id":/app/site/. ./site
+
           docker rm "$id"
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
