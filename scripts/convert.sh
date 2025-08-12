@@ -1,101 +1,49 @@
-\
-    #!/bin/sh
-    set -eu
+#!/usr/bin/env sh
+set -eu
 
-    # Inputs (with defaults)
-    SRC_DOC=${SRC_DOC:-src/document.docx}
-    OUT_DIR=${OUT_DIR:-site}
-    OUT_HTML=${OUT_HTML:-index.html}
-    CSS_PATH=${CSS_PATH:-theme/styles.css}
-    HEADER_PATH=${HEADER_PATH:-}
+# Use your actual file by default:
+SRC_DOC=${SRC_DOC:-src/Kinetics_Appendix.docx}
+OUT_DIR=${OUT_DIR:-site}
+OUT_HTML=${OUT_HTML:-index.html}
+CSS_PATH=${CSS_PATH:-theme/styles.css}
+TITLE=${TITLE:-Kinetics Appendix}
+MATHJAX_URL=${MATHJAX_URL:-https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js}
 
-    # Math rendering engine: mathjax | katex
-    MATH_ENGINE=${MATH_ENGINE:-mathjax}
-    # CDN URLs (can be overridden)
-    MATHJAX_URL=${MATHJAX_URL:-https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js}
-    KATEX_URL=${KATEX_URL:-https://cdn.jsdelivr.net/npm/katex@0.16.11/dist}
+mkdir -p "$OUT_DIR" "$OUT_DIR/assets"
 
-    TITLE=${TITLE:-My Document}
+CSS_LINK=""
+if [ -f "$CSS_PATH" ]; then
+  cp "$CSS_PATH" "$OUT_DIR/assets/styles.css"
+  CSS_LINK="-c assets/styles.css"
+fi
 
-    mkdir -p "$OUT_DIR"
-    ASSETS_DIR="$OUT_DIR/assets"
-    mkdir -p "$ASSETS_DIR"
+HEAD_FILE="$(mktemp)"
+cat > "$HEAD_FILE" <<'EOF'
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      tags: 'ams', tagSide: 'right', tagIndent: '0em'
+    },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+EOF
+echo "<script src=\"$MATHJAX_URL\" id=\"MathJax-script\" async></script>" >> "$HEAD_FILE"
 
-    # Prepare CSS: copy into site/assets so the deployed site can find it
-    if [ -f "$CSS_PATH" ]; then
-      cp "$CSS_PATH" "$ASSETS_DIR/styles.css"
-      CSS_PRESENT=1
-    else
-      CSS_PRESENT=0
-    fi
-
-    # Build head include for math
-    HEAD_FILE="/tmp/math-head.html"
-    if [ -n "$HEADER_PATH" ] && [ -f "$HEADER_PATH" ]; then
-      HEAD_FILE="$HEADER_PATH"
-    else
-      if [ "$MATH_ENGINE" = "mathjax" ]; then
-        # Config first (must be before the loader script)
-        cat > "$HEAD_FILE" <<'EOF'
-    <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$','$$'], ['\\[','\\]']],
-          tags: 'ams',
-          tagSide: 'right',
-          tagIndent: '0em'
-        },
-        options: {
-          skipHtmlTags: ['script','noscript','style','textarea','pre','code']
-        }
-      };
-    </script>
-    EOF
-        # Loader script
-        echo "<script src=\"$MATHJAX_URL\" id=\"MathJax-script\" async></script>" >> "$HEAD_FILE"
-      elif [ "$MATH_ENGINE" = "katex" ]; then
-        CSS_URL="$KATEX_URL/katex.min.css"
-        JS_URL="$KATEX_URL/katex.min.js"
-        AUTORENDER_URL="$KATEX_URL/contrib/auto-render.min.js"
-        cat > "$HEAD_FILE" <<EOF
-    <link rel="stylesheet" href="$CSS_URL">
-    <script src="$JS_URL"></script>
-    <script src="$AUTORENDER_URL"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      renderMathInElement(document.body, {
-        delimiters: [
-          {left: "$$", right: "$$", display: true},
-          {left: "\\[", right: "\\]", display: true},
-          {left: "\\(", right: "\\)", display: false},
-          {left: "$", right: "$", display: false}
-        ],
-        throwOnError: false
-      });
-    });
-    </script>
-    EOF
-      else
-        echo "Unknown MATH_ENGINE: $MATH_ENGINE" >&2
-        exit 2
-      fi
-    fi
-
-    # Build pandoc args
-    set -- "$SRC_DOC" \
-           -o "$OUT_DIR/$OUT_HTML" \
-           --extract-media="$OUT_DIR/media" \
-           --standalone \
-           --toc --toc-depth=3 \
-           --section-divs \
-           -H "$HEAD_FILE" \
-           --metadata "title:$TITLE"
-
-    if [ "$CSS_PRESENT" -eq 1 ]; then
-      set -- "$@" -c "assets/styles.css"
-    fi
-
-    pandoc "$@"
-
-    echo "Converted $SRC_DOC -> $OUT_DIR/$OUT_HTML (math engine: $MATH_ENGINE)"
+if [ -f "$SRC_DOC" ]; then
+  pandoc "$SRC_DOC" \
+    -o "$OUT_DIR/$OUT_HTML" \
+    --extract-media="$OUT_DIR/media" \
+    --standalone \
+    --toc --toc-depth=3 \
+    --section-divs \
+    -H "$HEAD_FILE" \
+    --metadata "title:$TITLE" \
+    $CSS_LINK
+  echo "Converted $SRC_DOC -> $OUT_DIR/$OUT_HTML"
+else
+  echo "WARNING: $SRC_DOC not found; generating placeholder page."
+  printf '%s\n' '<!doctype html><meta charset="utf-8"><title>Missing DOCX</title><h1>Put your DOCX at src/Kinetics_Appendix.docx</h1>' > "$OUT_DIR/index.html"
+fi
