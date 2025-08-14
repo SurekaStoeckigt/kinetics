@@ -7,12 +7,14 @@ MATHJAX_URL=${MATHJAX_URL:-https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-ch
 
 mkdir -p "$OUT_DIR" "$OUT_DIR/assets"
 
+# Include stylesheet if present
 CSS_LINK=""
 if [ -f "$CSS_PATH" ]; then
   cp -f "$CSS_PATH" "$OUT_DIR/assets/styles.css"
   CSS_LINK="-c assets/styles.css"
 fi
 
+# Inject MathJax
 HEAD_FILE="$(mktemp)"
 cat > "$HEAD_FILE" <<'EOF'
 <script>
@@ -58,7 +60,7 @@ if ls src/*.docx >/dev/null 2>&1; then
   done
 fi
 
-# Optional: Markdown pages in docs/
+# Optional: build Markdown in docs/
 if ls docs/*.md >/dev/null 2>&1; then
   for f in docs/*.md; do
     [ -e "$f" ] || continue
@@ -99,5 +101,7 @@ fi
   fi
 } > "$OUT_DIR/index.html"
 
+# Avoid Jekyll interference on Pages
 touch "$OUT_DIR/.nojekyll"
+
 echo "Built $count page(s)."
