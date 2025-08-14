@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Kynch_Theory_WWTP_Detailed_Final</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        tags: 'ams', tagSide: 'right', tagIndent: '0em'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Kynch_Theory_WWTP_Detailed_Final</h1>
+</header>
+<p>Kynch Theory and Application to Wastewater Treatment Plants</p>
+<p>1. Overview</p>
+<p>Kynch theory, introduced by G.J. Kynch in 1952, describes the
+sedimentation of concentrated suspensions such as activated sludge in
+wastewater treatment plants (WWTPs). The theory assumes that the
+settling velocity of particles depends only on the local solids
+concentration and not on time or location within the settling zone. It
+is primarily applied to the zone-settling stage of clarifiers and
+thickeners, where solids form a sludge blanket that settles as a
+cohesive mass. Kynch theory forms the foundation of the solids flux
+method, which is widely used in clarifier and thickener design, as well
+as in operational assessments.</p>
+<p>2. Core Equations</p>
+<p>The solids continuity equation for one-dimensional vertical settling
+is:</p>
+<p>$$\frac{\partial C}{\partial t} + \frac{\partial \left( v_s(C) \cdot
+C \right)}{\partial z} = 0$$</p>
+<p>Where: C is the solids concentration (kg/m³ or g/L), t is time (s), z
+is depth measured positively downward (m), and v_s(C) is the hindered
+settling velocity (m/s) as a function of C. The term v_s(C)·C represents
+the solids flux in kg/(m²·s). The first term in the equation represents
+the local rate of change of solids concentration over time, while the
+second term represents the net transport of solids due to settling.</p>
+<p>The solids flux relationship is defined as:</p>
+<p>$$J(C) = v_s(C) \cdot C$$</p>
+<p>Here: J(C) is the solids flux in kg/(m²·s). This is the mass of
+solids passing through a unit horizontal area per second. For activated
+sludge systems, typical operating solids flux values range from 0.1 to
+0.4 kg/(m²·s) under normal conditions, depending on sludge settleability
+and concentration.</p>
+<p>The velocity of a concentration front is given by:</p>
+<p>\frac{dz}{dt} = \frac{d \left( v_s(C) \cdot C \right)}{dC}</p>
+<p>This equation represents the characteristic speed at which a
+concentration front moves through the settling zone. It is the
+derivative of the solids flux with respect to solids concentration,
+describing how changes in concentration affect the movement of settling
+fronts.</p>
+<p>3. Settling Regimes in WWTP Clarifiers</p>
+<p>In sedimentation tanks, four distinct settling regimes are commonly
+observed:<br />
+1. Discrete particle settling – individual particles settle without
+interaction.<br />
+2. Flocculent settling – particles collide and aggregate to form larger
+flocs, increasing settling velocity.<br />
+3. Zone (hindered) settling – particles form a blanket that settles as a
+single mass at a velocity dependent on concentration.<br />
+4. Compression settling – solids at the bottom compress under their own
+weight, expelling water.<br />
+Kynch theory applies specifically to the zone-settling regime, where the
+interactions between particles dominate and hinder their settling.</p>
+<p>4. Solids Flux Method for Design and Operation</p>
+<p>The solids flux method uses the relationship between settling
+velocity and concentration to determine clarifier capacity. It involves
+calculating the solids flux for a range of concentrations and finding
+the minimum value that limits performance. This minimum is known as the
+limiting solids flux (J_lim):</p>
+<p>J_{\text{lim}} = \min_{C} J(C)</p>
+<p>Once J_lim is determined, the minimum required surface area of the
+clarifier can be calculated:</p>
+<p>A_{\text{min}} = \frac{Q \cdot C_0}{J_{\text{lim}}}</p>
+<p>Where: A_min is in m², Q is the influent flow rate (m³/s), C_0 is the
+influent solids concentration (kg/m³), and J_lim is in kg/(m²·s).
+Additionally, the surface overflow rate (SOR) should be checked to
+ensure it is less than the settling velocity at the operating
+concentration:</p>
+<p>\mathrm{SOR} = \frac{Q}{A} \;&lt;\;
+v_s\!\left(C_{\text{oper}}\right)</p>
+<p>5. Common Settling Velocity Models</p>
+<p>Settling velocity functions are typically determined from batch
+settling tests. Two common empirical models are:</p>
+<p>v_s(C) = v_0 \cdot e^{-k \cdot C} \quad \text{(Vesilind model)}</p>
+<p>Where: v_0 is the theoretical settling velocity at zero concentration
+(m/h), and k is the hindered settling coefficient (m³/kg). Typical
+values for activated sludge are v_0 = 5–15 m/h and k = 0.05–0.15
+m³/kg.</p>
+<p>v_s(C) = v_{\text{St}} \cdot e^{-r_h \cdot C} + v_{\text{floc}} \cdot
+e^{-r_f \cdot C} \quad \text{(Tak\'acs model)}</p>
+<p>This double-exponential model separates the contributions from
+hindered settling and flocculent settling. Parameters are determined by
+fitting experimental data.</p>
+<p>6. Practical Steps in WWTP Application</p>
+<p>1. Conduct a batch settling test on a representative sludge sample,
+recording interface height over time.<br />
+2. Convert height-time data to concentration-velocity data.<br />
+3. Fit an appropriate settling velocity model to the data.<br />
+4. Compute solids flux J(C) for a range of concentrations.<br />
+5. Identify J_lim from the curve.<br />
+6. Calculate A_min and check SOR for both average and peak flows.<br />
+7. Adjust sludge return and wasting rates to maintain optimal blanket
+depth.</p>
+<p>7. Worked Example</p>
+<p>Given: Q = 5,000 m³/d, C_0 = 3,000 mg/L = 3 kg/m³, and from tests
+v_s(3) = 1.0 m/h = 24 m/d.<br />
+Hydraulic check:</p>
+<p>A \approx \frac{Q}{v_s(C_{\text{oper}})} = \frac{5000}{24} \approx
+208 \ \text{m}^2</p>
+<p>If J_lim = 0.12 kg/(m²·s), then:</p>
+<p>A_{\text{min}} = \frac{Q \cdot C_0}{J_{\text{lim}}}</p>
+<p>Substituting Q = 5000/86400 m³/s and C_0 = 3 kg/m³ yields
+approximately 144 m².</p>
+<p>8. References</p>
+<p>Kynch, G.J. (1952). A theory of sedimentation. Transactions of the
+Faraday Society, 48, 166–176.</p>
+<p>WEF (2017). Liquid Stream Fundamentals:
+Clarification/Sedimentation.</p>
+<p>Takács, I., Patry, G.G., Nolasco, D. (1991). A dynamic model of the
+clarification–thickening process. Water Research, 25(10), 1263–1271.</p>
+<p>Vesilind, P.A. (1968). Design of prototype thickeners from batch
+settling tests. Water &amp; Sewage Works.</p>
+<p>University of Waterloo. Solids Flux Method (Design Note).</p>
+</body>
+</html>
