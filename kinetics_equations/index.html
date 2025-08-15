@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Kinetics_Equations</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        tags: 'ams', tagSide: 'right', tagIndent: '0em'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Kinetics_Equations</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#hydrolysis-of-particulate-bod"
+id="toc-hydrolysis-of-particulate-bod"><strong>Hydrolysis of Particulate
+BOD</strong></a></li>
+<li><a href="#example-species" id="toc-example-species"><strong>Example
+Species</strong></a></li>
+<li><a href="#pac-adsorption" id="toc-pac-adsorption"><strong>PAC
+Adsorption</strong> </a></li>
+<li><a href="#methanogenesis-optional"
+id="toc-methanogenesis-optional"><strong>Methanogenesis
+(Optional)</strong></a>
+<ul>
+<li><a href="#example-species-1"
+id="toc-example-species-1"><strong>Example Species</strong></a></li>
+<li><a href="#constants-and-references"
+id="toc-constants-and-references"><strong>Constants and
+References</strong> </a></li>
+<li><a href="#typical-ranges-of-constants"
+id="toc-typical-ranges-of-constants"><strong>Typical Ranges of
+Constants</strong></a></li>
+<li><a href="#references"
+id="toc-references"><strong>References</strong></a></li>
+<li><a href="#references-1"
+id="toc-references-1"><strong>References:</strong></a></li>
+<li><a href="#example-species-2"
+id="toc-example-species-2"><strong>Example Species:</strong></a></li>
+<li><a href="#constants"
+id="toc-constants"><strong>Constants</strong></a></li>
+<li><a href="#temperature-correction"
+id="toc-temperature-correction"><strong>Temperature
+Correction</strong></a></li>
+<li><a href="#example-species-3"
+id="toc-example-species-3"><strong>Example Species:</strong></a></li>
+<li><a href="#explanation-of-rate-expression"
+id="toc-explanation-of-rate-expression"><strong>Explanation of Rate
+Expression</strong></a></li>
+<li><a href="#constants-reference-henze-et-al.-2000."
+id="toc-constants-reference-henze-et-al.-2000."><strong>Constants</strong>
+Reference: Henze et al., 2000.</a></li>
+<li><a href="#h.-temperature-correction"
+id="toc-h.-temperature-correction"><strong>H. Temperature
+Correction</strong></a></li>
+</ul></li>
+<li><a href="#reaction-3-nitric-oxide-reduction-to-nitrous-oxide"
+id="toc-reaction-3-nitric-oxide-reduction-to-nitrous-oxide"><mark>Reaction
+3: Nitric Oxide Reduction to Nitrous Oxide</mark></a>
+<ul>
+<li><a href="#example-species-4"
+id="toc-example-species-4"><strong>Example Species</strong></a></li>
+<li><a href="#explanation-of-rate-expression-1"
+id="toc-explanation-of-rate-expression-1"><strong>Explanation of Rate
+Expression:</strong></a></li>
+<li><a href="#units-and-interpretation"
+id="toc-units-and-interpretation"><strong>Units and
+Interpretation:</strong></a></li>
+<li><a href="#constants-1"
+id="toc-constants-1"><strong>Constants:</strong></a></li>
+<li><a href="#temperature-correction-1"
+id="toc-temperature-correction-1"><strong>Temperature
+Correction</strong></a></li>
+<li><a href="#reference-for-this-reaction"
+id="toc-reference-for-this-reaction"><strong>Reference for this
+Reaction:</strong></a></li>
+<li><a href="#reference-for-this-reaction-1"
+id="toc-reference-for-this-reaction-1"><strong>Reference for this
+Reaction</strong></a></li>
+<li><a href="#reference-for-this-reaction-2"
+id="toc-reference-for-this-reaction-2"><strong>Reference for this
+Reaction</strong></a></li>
+<li><a href="#chemical-reaction"
+id="toc-chemical-reaction"><strong>Chemical Reaction</strong></a></li>
+<li><a href="#example-species-5"
+id="toc-example-species-5"><strong>Example Species</strong></a></li>
+<li><a href="#rate-expression" id="toc-rate-expression"><strong>Rate
+Expression</strong></a></li>
+<li><a href="#units-and-interpretation-1"
+id="toc-units-and-interpretation-1"><strong>Units and
+Interpretation</strong></a></li>
+<li><a href="#temperature-correction-2"
+id="toc-temperature-correction-2"><strong>Temperature
+Correction</strong></a></li>
+<li><a href="#reference-for-this-reaction-3"
+id="toc-reference-for-this-reaction-3"><strong>Reference for this
+Reaction</strong></a></li>
+<li><a href="#reference-for-this-reaction-4"
+id="toc-reference-for-this-reaction-4"><strong>Reference for this
+Reaction</strong></a></li>
+</ul></li>
+<li><a href="#combined-variable-list"
+id="toc-combined-variable-list"><strong>Combined Variable List</strong>
+</a></li>
+<li><a href="#references-combined"
+id="toc-references-combined"><strong>References (Combined)</strong></a>
+<ul>
+<li><a href="#example-species-6"
+id="toc-example-species-6"><strong>Example Species</strong></a></li>
+<li><a href="#typical-ranges" id="toc-typical-ranges"><strong>Typical
+Ranges</strong></a></li>
+<li><a href="#temperature-correction-3"
+id="toc-temperature-correction-3"><strong>Temperature
+Correction</strong></a></li>
+<li><a href="#list-of-references"
+id="toc-list-of-references"><strong>List of References</strong></a></li>
+</ul></li>
+<li><a href="#fermentation"
+id="toc-fermentation"><strong>Fermentation</strong> </a></li>
+<li><a href="#variable-index" id="toc-variable-index"><strong>Variable
+Index</strong></a></li>
+<li><a href="#references-2"
+id="toc-references-2"><strong>References</strong></a></li>
+<li><a href="#pac-adsorption-1" id="toc-pac-adsorption-1"><strong>PAC
+Adsorption</strong></a>
+<ul>
+<li><a href="#chemical-reaction-1"
+id="toc-chemical-reaction-1"><strong>Chemical Reaction</strong></a></li>
+<li><a href="#example-species-7"
+id="toc-example-species-7"><strong>Example Species</strong></a></li>
+<li><a href="#units-of-reaction-rate"
+id="toc-units-of-reaction-rate"><strong>Units of Reaction
+Rate</strong></a></li>
+<li><a href="#constants-plain-text"
+id="toc-constants-plain-text"><strong>Constants (plain
+text)</strong></a></li>
+<li><a href="#typical-ranges-1"
+id="toc-typical-ranges-1"><strong>Typical Ranges</strong></a></li>
+<li><a href="#variable-index-1"
+id="toc-variable-index-1"><strong>Variable Index</strong></a></li>
+<li><a href="#references-3"
+id="toc-references-3"><strong>References</strong></a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="hydrolysis-of-particulate-bod" class="level3">
+<h3><strong>Hydrolysis of Particulate BOD</strong></h3>
+<p>Hydrolysis is the biochemical process by which complex particulate
+organic matter is enzymatically broken down into simpler soluble
+compounds.</p>
+<p>The reaction has the general chemical formula:</p>
+<p>BODₚ → BODₛ</p>
+<p>Rate Expression</p>
+<p>r_{hyd} = k_{hyd} \cdot BOD_p</p>
+<p><strong>Examples of hydrolysis include:</strong></p>
+<p><mark>A) Hydrolysis of Cellulose (Vavilin et al.,1996).</mark></p>
+<p>This is the enzymatic cleavage of insoluble cellulose polymers
+(C₆H₁₀O₅)_n into soluble glucose (C₆H₁₂O₆). This is mediated by
+cellulase enzymes. The reaction liberates fermentable sugars essential
+for downstream biological processes.</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>\text{(C}<em>6\text{H}</em>{10}\text{O}_5\text{)}_n + n \cdot
+\text{H}_2\text{O} \rightarrow n \cdot
+\text{C}<em>6\text{H}</em>{12}\text{O}_6</p>
+<p>Example Species::</p>
+<ul>
+<li><p><strong>Reactant:</strong> Cellulose polymer (C₆H₁₀O₅)ₙ</p></li>
+<li><p><strong>Product:</strong> Glucose (C₆H₁₂O₆)</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{\text{hyd, cellulose}} = k_{\text{hyd, cellulose}} \cdot
+C_{\text{cellulose}}</p>
+<p><strong>Units:</strong></p>
+<ul>
+<li><p><strong>r_{hyd,cellulose}:</strong> mol·m⁻³·s⁻¹ glucose
+produced</p></li>
+<li><p><strong>k_{hyd,cellulose}:</strong> s⁻¹</p></li>
+<li><p><strong>C_{cellulose}:</strong> mol·m⁻³ cellulose</p></li>
+</ul>
+<p><strong>The rate refers to:</strong> This rate denotes the moles of
+glucose produced per m³ reactor volume per second.</p>
+<p>Typical Rate Constant (20–35 °C):</p>
+<ul>
+<li><p>k_{hyd, cellulose} ≈ 1.0×10⁻⁶ – 5×10⁻⁶ s⁻¹ (depending on
+temperature and inoculum)</p></li>
+<li><p>θ _{cellulose}(temperature coefficient) = 1.07–1.09
+(dimensionless)</p>
+<ul>
+<li><p><em>θ means: k_T = k_20 × θ^(T-20)</em></p></li>
+<li><p>Higher θ indicates stronger temp sensitivity</p></li>
+</ul></li>
+</ul>
+<p><mark>B) Hydrolysis of Proteins (Angelidaki and Ahring,
+1994)</mark></p>
+<p>This is the protease-catalyzed hydrolysis of protein macromolecules
+(C₄H₇O₂N)_n to soluble amino acids such as alanine (C₄H₉O₃N). This
+provides nitrogen and carbon for microbes</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>\text{(C}_4\text{H}_7\text{O}_2\text{N})_n + n \cdot
+\text{H}_2\text{O} \rightarrow n \cdot
+\text{C}_4\text{H}_9\text{O}_3\text{N}</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p><strong>Reactant:</strong> Protein polymer ((C₄H₇O₂N)_n)</p></li>
+<li><p><strong>Product:</strong> Soluble Amino acids (e.g.,
+C₄H₉O₃N)</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{\text{hyd, protein}} = k_{\text{hyd, protein}} \cdot
+C_{\text{protein}}</p>
+<p><strong>Units:</strong></p>
+<ul>
+<li><p>r_{hyd,protein}<strong>:</strong> mol·m⁻³·s⁻¹ amino acids
+produced</p></li>
+<li><p>k_{hyd,protein}<strong>:</strong> s⁻¹</p></li>
+<li><p>C_{protein}<strong>:</strong> mol·m⁻³ protein</p></li>
+</ul>
+<p><strong>The rate refers to moles</strong> of amino acids produced per
+cubic meter per second.</p>
+<p><strong>Typical Rate Constant:</strong></p>
+<ul>
+<li><p>k_{hyd, protein} ≈ 1.5×10⁻⁶ – 4×10⁻⁶ s⁻¹</p></li>
+<li><p>θ_{protein} = 1.08–1.09</p></li>
+</ul>
+<p><mark>C) Hydrolysis of Lipids (Palatsi et al. ,2010)</mark></p>
+<p>This is the lipase-driven hydrolysis of triglycerides (e.g.,
+triolein, C₅₇H₁₀₄O₆) yields glycerol (C₃H₈O₃) and fatty acids
+(C₁₈H₃₄O₂). This is a slower process, especially in low-temperature
+conditions.</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>\text{C}<em>{57}\text{H}</em>{104}\text{O}_6 + 3 \cdot
+\text{H}_2\text{O} \rightarrow \text{C}_3\text{H}<em>8\text{O}3 + 3
+\cdot \text{C}{18}\text{H}</em>{34}\text{O}_2</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p><strong>Reactant:</strong> Triglycerides (C₅₇H₁₀₄O₆)</p></li>
+<li><p><strong>Products:</strong> Glycerol (C₃H₈O₃), Oleic acid
+(C₁₈H₃₄O₂)</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{\text{hyd, lipid}} = k_{\text{hyd, lipid}} \cdot
+C_{\text{lipid}}</p>
+<p><strong>Units:</strong></p>
+<ul>
+<li><p><strong>r_{hyd,lipid}:</strong> mol·m⁻³·s⁻¹ glycerol
+produced</p></li>
+<li><p><strong>k_{hyd,lipid}:</strong> s⁻¹</p></li>
+<li><p><strong>C_{lipid}:</strong> mol·m⁻³ triglycerides</p></li>
+</ul>
+<p><strong>The rate refers to:</strong> Moles of glycerol formed per
+m³·s.</p>
+<p><strong>Typical Rate Constant:</strong></p>
+<ul>
+<li><p>k_{hyd,lipid} = 5×10⁻⁷ – 1×10⁻⁶ s⁻¹</p></li>
+<li><p>θ_{lipid} = 1.06–1.09</p></li>
+</ul>
+<p><mark>D) Hydrolysis of Biomass (Batstone et al.,2002).</mark></p>
+<p>This is the autolytic lysis of decaying biomass (heterotrophic
+bacteria, C₅H₇O₂N), releasing soluble intermediates and gases (CO₂, NH₃,
+CH₄).</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>\text{C}_5\text{H}_7\text{O}_2\text{N} + 3 \cdot \text{H}_2\text{O}
+\rightarrow 5 \cdot \text{CO}_2 + \text{NH}_3 + \text{CH}_4</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p><strong>Reactant:</strong> Active biomass (C₅H₇O₂N)
+(heterotrophs)</p></li>
+<li><p><strong>Products:</strong> CO₂, ammonia (NH₃), methane
+(CH₄)</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{\text{hyd, biomass}} = k_{\text{hyd, biomass}} \cdot
+C_{\text{biomass}}</p>
+<p><strong>Units:</strong></p>
+<ul>
+<li><p><strong>r_{hyd,biomass}:</strong> mol·m⁻³·s⁻¹ CO₂
+produced</p></li>
+<li><p><strong>k_{hyd,biomass}:</strong> s⁻¹</p></li>
+<li><p><strong>C_{biomass}:</strong> mol·m⁻³ biomass</p></li>
+</ul>
+<p><strong>The rate refers to:</strong> The rate is moles of CO₂
+released per m³·s.</p>
+<p><strong>Typical Rate Constant:</strong></p>
+<ul>
+<li><p>k_{hyd,biomass} = 1×10⁻⁷ – 1×10⁻⁶ s⁻¹</p></li>
+<li><p>θ_{biomass} = 1.07–1.09</p></li>
+</ul>
+<p><strong>Carbon Oxidation (Aerobic): Consolidated Reactions, Rates,
+and References</strong></p>
+<p>Carbon oxidation is the microbial process in which heterotrophic
+bacteria consume biodegradable organic matter in the presence of oxygen
+to produce carbon dioxide, water, and new biomass.</p>
+<p>The kinetics are generally modeled using <strong>Monod
+kinetics</strong>, which account for:</p>
+<ul>
+<li><p>substrate limitation (half-saturation for substrate)</p></li>
+<li><p>oxygen limitation (half-saturation for oxygen)</p></li>
+</ul>
+<p><strong>Monod kinetics</strong> means:</p>
+<ul>
+<li><p>As substrate concentration increases, the rate approaches a
+maximum asymptotically.</p></li>
+<li><p>As oxygen increases, the rate also approaches a maximum.</p></li>
+<li><p>The combined limitation is represented by the product of both
+limiting terms.</p></li>
+</ul>
+<p>The general <strong>Monod form</strong> is:</p>
+<p>r = \mu_{\text{H}} \cdot \frac{C_{\text{S}}}{K_{\text{S}} +
+C_{\text{S}}} \cdot \frac{C_{\text{O}<em>2}}{K</em>{\text{O}} +
+C_{\text{O}<em>2}} \cdot C</em>{\text{X,H}}</p>
+<ul>
+<li><p>r is expressed in <strong>mol substrate degraded per
+m³·s</strong>.</p></li>
+<li><p>Each specific reaction uses a different substrate C_S.</p></li>
+</ul>
+<p><mark>Carbon Oxidation of Soluble Glucose</mark> <em>.</em></p>
+<ul>
+<li><p>Glucose is oxidized by heterotrophs to yield CO₂.</p></li>
+<li><p>This reaction supplies energy for microbial growth.</p></li>
+<li><p>Monod kinetics describe dependence on glucose and
+oxygen.</p></li>
+</ul>
+<p><strong>Chemical Reaction:</strong></p>
+<p>\text{C}<em>6\text{H}</em>{12}\text{O}_6 + 6 \cdot \text{O}_2
+\rightarrow 6 \cdot \text{CO}_2 + 6 \cdot \text{H}_2\text{O}</p>
+<p><strong>Example species:</strong></p>
+<ul>
+<li><p><strong>Reactant substrate:</strong> Glucose (C₆H₁₂O₆)</p></li>
+<li><p><strong>Oxidant:</strong> Oxygen (O₂)</p></li>
+<li><p><strong>Products:</strong> Carbon dioxide (CO₂), Water
+(H₂O)</p></li>
+</ul>
+<p><strong>Kinetic Rate Expression (Monod)</strong></p>
+<p>r_{\text{ox,glucose}} = \mu_{\text{H}} \cdot
+\frac{C_{\text{glucose}}}{K_{\text{S,glucose}} + C_{\text{glucose}}}
+\cdot \frac{C_{\text{O}<em>2}}{K</em>{\text{O}} + C_{\text{O}<em>2}}
+\cdot C</em>{\text{X,H}}</p>
+<p>r_{\text{glucose}} = \mu_H \cdot
+\frac{S_{\text{glucose}}}{K_{S,\text{glucose}} + S_{\text{glucose}}}
+\cdot \frac{S_{O_2}}{K_O + S_{O_2}} \cdot X_H</p>
+<p><strong>Units:</strong></p>
+<ul>
+<li><p><mark>R_glucose : mol glucose oxidized per m³ per
+s</mark></p></li>
+<li><p><mark>K</mark></p></li>
+<li><p><mark>C</mark></p></li>
+</ul>
+<p><strong>Monod Kinetics Description:</strong></p>
+<ul>
+<li><p>Expresses <strong>substrate and oxygen limitation</strong>.
+Numerator mols refer to glucose (reactant).</p></li>
+<li><p>The first fraction models glucose availability.</p></li>
+<li><p>The second fraction models oxygen availability.</p></li>
+<li><p>X_H is active biomass concentration (heterotrophs).</p></li>
+</ul>
+<ul>
+<li><p>When glucose ≫ K_S , the substrate term ≈1.</p></li>
+<li><p>When O₂ ≫ KO , oxygen term ≈1.</p></li>
+<li><p>Both must be sufficient to achieve maximum rate.</p></li>
+<li><p>This is <strong>double-substrate Monod kinetics</strong>, i.e.,
+both glucose and oxygen limit</p></li>
+</ul>
+<p><strong>Typical Constants</strong> Henze, M. et al.
+(1987).<strong>:</strong></p>
+<ul>
+<li><p>r_{ox,glucose} : Moles of <strong>glucose degraded per cubic
+meter per second</strong></p></li>
+<li><p>\mu_{\text{H}} = 3.5 \times 10^{-5} \ s^{-1}</p>
+<ul>
+<li><p>Max growth rate of heterotrophs consuming glucose) (Maximum
+specific growth rate on glucose.) 2e-5–5e-5 s^{-1}.</p></li>
+</ul></li>
+<li><p>K_{\text{S,glucose}} = 2 \times 10^{-3} \ mol \cdot m^{-3}</p>
+<ul>
+<li><p>(Half-saturation constant for glucose substrate). Mols refer to
+glucose. 1e-3–5e-3 mol/m³</p></li>
+</ul></li>
+<li><p>K_{\text{O}} = 1 \times 10^{-3} \ mol \cdot m^{-3}</p>
+<ul>
+<li><p>(Half-saturation constant for dissolved oxygen) Mols refer to
+dissolved oxygen. 1e-4–1e-3 mol/m³</p></li>
+</ul></li>
+<li><p>\theta_{\text{H}} = 1.07</p>
+<ul>
+<li><p>Temperature correction factor applying only to \mu_{\text{H}}.
+Adjusts max growth rate. Applies to all carbonaceous substrate
+oxidations by heterotrophs.</p></li>
+</ul></li>
+<li><p>\mu_{T} = \mu_{20} \cdot \theta_{\text{H}}^{(T - 20)}</p>
+<ul>
+<li><p>T in °C.</p></li>
+<li><p>Recommended range: 10–35 °C.</p></li>
+</ul></li>
+</ul>
+<p><mark>Carbon Oxidation of Soluble Acetate</mark></p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>\text{C}_2\text{H}_4\text{O}_2 + 2 \cdot \text{O}_2 \rightarrow 2
+\cdot \text{CO}_2 + 2 \cdot \text{H}_2\text{O}</p>
+<p>\text{C}_2\text{H}_4\text{O}_2 + 2 \cdot \text{O}_2 \rightarrow 2
+\cdot \text{CO}_2 + 2 \cdot \text{H}_2\text{O}</p>
+</section>
+<section id="example-species" class="level3">
+<h3><strong>Example Species</strong></h3>
+<ul>
+<li><p><strong>Substrate:</strong> Acetic acid (C2 H4 O2 )</p></li>
+<li><p><strong>Oxidant:</strong> Oxygen (O2 )</p></li>
+<li><p><strong>Products:</strong> Carbon dioxide (CO2 ), water (H2
+O)</p></li>
+</ul>
+<p><strong>Rate Expression (Monod):</strong></p>
+<p>r_{\text{ox,acetate}} = \mu_{\text{H}} \cdot
+\frac{C_{\text{acetate}}}{K_{\text{S,acetate}} + C_{\text{acetate}}}
+\cdot \frac{C_{\text{O}<em>2}}{K</em>{\text{O}} + C_{\text{O}<em>2}}
+\cdot C</em>{\text{X,H}}</p>
+<p>r_{\text{acetate}} = \mu_H \cdot
+\frac{S_{\text{acetate}}}{K_{S,\text{acetate}} + S_{\text{acetate}}}
+\cdot \frac{S_{O_2}}{K_O + S_{O_2}} \cdot X_H</p>
+<p><strong>Monod Kinetics Description:</strong></p>
+<ul>
+<li><p>Substrate limitation captured by KS,acetate .</p></li>
+<li><p>Oxygen limitation captured by KO .</p></li>
+<li><p>Same Monod principle as glucose.</p></li>
+<li><p>Substrate limitation (acetate) and oxygen limitation.</p></li>
+</ul>
+<p><strong>Typical Constants</strong> Reference: Henze et al.
+(1987)<strong>:</strong></p>
+<ul>
+<li><p>r_ox,acetate = Moles acetate degraded per m³·s.<strong>mol
+acetate oxidized per m³ per s</strong></p></li>
+<li><p>\mu_{\text{H}} = 3.5 \times 10^{-5} \ s^{-1}</p>
+<ul>
+<li><p>Max growth rate on acetate. 2×10−5 to 4×10−5 s−1</p></li>
+</ul></li>
+<li><p>K_{\text{S,acetate}} = 1 \times 10^{-3} \ mol \cdot m^{-3}</p>
+<ul>
+<li><p>Moles refer to acetate 5×10−4 to 2×10−3 mol·m−3</p></li>
+</ul></li>
+<li><p>K_{\text{O}} = 1 \times 10^{-3} \ mol \cdot m^{-3}</p>
+<ul>
+<li><p>Mols refer to oxygen 1 x 10 –4 to 1 x 10-3 mol.m-3</p></li>
+</ul></li>
+<li><p>\theta_{\text{H}} = 1.07</p>
+<ul>
+<li><p>Temperature coefficient for heterotrophs.</p></li>
+</ul></li>
+</ul>
+<p><strong>Typical Ranges:</strong></p>
+<ul>
+<li><p>Same as glucose oxidation.</p></li>
+</ul>
+<p><mark>Reaction 3: Oxidation of Soluble Amino Acids (Alanine Example)
+Henze et al. (1987) Palatsi et al. (2010)</mark></p>
+<p>Aerobic oxidation of amino acids to CO2 and ammonia. Releases
+nitrogen for nitrification downstream.</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>\text{C}_3\text{H}_7\text{NO}_2 + 3 \cdot \text{O}_2 \rightarrow 3
+\cdot \text{CO}_2 + 3 \cdot \text{H}_2\text{O} + \text{NH}_3</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p><strong>Reactant:</strong> Alanine (C₃H₇NO₂)</p></li>
+<li><p><strong>Products:</strong> CO₂, H₂O, NH₃</p></li>
+</ul>
+<p><strong>Rate Expression</strong></p>
+<p>r_{\text{amino}} = \mu_H \cdot
+\frac{S_{\text{amino}}}{K_{S,\text{amino}} + S_{\text{amino}}} \cdot
+\frac{S_{O_2}}{K_O + S_{O_2}} \cdot X_H</p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p>Double substrate Monod kinetics.</p></li>
+<li><p>Moles in rate refer to amino acid oxidized.</p></li>
+</ul>
+<p><strong>Typical Constants: (Henze et al)</strong></p>
+<ul>
+<li><p>R =mol amino acids per m3 per second. r<strong>ate of consumption
+of soluble amino acids</strong> in mol\cdotpm−3⋅s−1.</p></li>
+<li><p>\mu_H = 3.2 \times 10^{-5} s^{-1} 2×10−5 to <em>3.5×10−5</em>
+s<em>−1</em></p></li>
+<li><p>K_{S,\text{amino}} = 2 \times 10^{-3} mol·m^{-3} (moles anine)
+1x10-3 to 3x10-3mol/m3</p></li>
+<li><p>K_O = 1 \times 10^{-3} mol·m^{-3} (moles oxygen) 1x10-4 to 1x10-3
+mol/m3</p></li>
+<li><p>\theta_H = 1.07</p></li>
+</ul>
+<p><mark>Reaction 4: Oxidation of Soluble Lipids</mark></p>
+<p><strong>Description:</strong></p>
+<p>Aerobic oxidation of long-chain fatty acids. Slow due to lower
+solubility and need for prior emulsification.</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>\text{C}<em>{18}\text{H}</em>{34}\text{O}_2 + 26 \cdot \text{O}_2
+\rightarrow 18 \cdot \text{CO}_2 + 17 \cdot \text{H}_2\text{O}</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p><strong>Reactant:</strong> Oleic acid (C₁₈H₃₄O₂)</p></li>
+<li><p><strong>Products:</strong> CO₂, H₂O</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{\text{lipid}} = \mu_H \cdot
+\frac{S_{\text{lipid}}}{K_{S,\text{lipid}} + S_{\text{lipid}}} \cdot
+\frac{S_{O_2}}{K_O + S_{O_2}} \cdot X_H</p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p>Moles refer to lipid oxidized.</p></li>
+<li><p>Rate limited by lipid hydrolysis and oxygen.</p></li>
+</ul>
+<p>Constants</p>
+<ul>
+<li><p>R_ox,lipid = mol amino acids per m3 per second . The <em>moles
+again refer to the reactant substrate</em> (soluble lipids).</p></li>
+<li><p>\mu_H = 1.8 \times 10^{-5} {s^{-1}). Lower due to solubility.
+1×10−5 to 2.0×10−5 s<em>−</em>−1</p></li>
+<li><p>K_{S,\text{lipid}} = 1 \times 10^{-3} mol·m^{-3}. MOls lipid</p>
+<ul>
+<li><p>5×10−4 to 1.5×10−3 mol·m−3</p></li>
+</ul></li>
+<li><p>K_O = 1 \times 10^{-3} mol·m^{-3}. Moles oxygen.</p>
+<ul>
+<li><p>1×10−4 to 1×10−3 mol·m−3</p></li>
+</ul></li>
+<li><p>\theta_H = 1.07. temperature factor.</p></li>
+</ul>
+<p><strong>References:</strong></p>
+<ul>
+<li><p>Henze, M., Gujer, W., Mino, T., van Loosdrecht, M.C.M. (2000).
+Activated Sludge Models ASM1, ASM2, ASM2d and ASM3. IWA
+Publishing.</p></li>
+<li><p>Metcalf &amp; Eddy (2013). Wastewater Engineering: Treatment and
+Resource Recovery. McGraw Hill.</p></li>
+<li><p>Grady Jr., C.P.L., Daigger, G.T., Love, N.G., Filipe, C.D.M.
+(2011). Biological Wastewater Treatment, Third Edition.</p></li>
+<li><p>Rittmann, B.E., McCarty, P.L. (2001). Environmental
+Biotechnology: Principles and Applications. McGraw Hill.</p></li>
+<li><p>Judd, S. (2006). The MBR Book: Principles and Applications of
+Membrane Bioreactors for Water and Wastewater Treatment.
+Elsevier.</p></li>
+</ul>
+</section>
+<section id="pac-adsorption" class="level3">
+<h3><strong>PAC Adsorption</strong> </h3>
+<p><strong>Chemical Reaction</strong></p>
+<p>Contaminants adsorb onto powdered activated carbon (PAC) surfaces via
+Langmuir isotherm equilibrium, improving settling and reducing soluble
+organics.</p>
+<p>Chemical – physical removal of organics. Dissolved contaminant are
+adsorbed onto PAC particles:</p>
+<p>Contaminant + PAC ↔︎ Surface Complex</p>
+<p><strong>Rate Expression</strong></p>
+<p>r_{ads} = k_{ads} \cdot PAC \cdot \frac{C}{1 + K_{ads} \cdot C}</p>
+<p><strong>Constants (SI Units)</strong><br />
+Site-specific (system and contaminant dependent)</p>
+<p>k_ads: system-specific, typical ≈1×10^-4 m³/kg⋅s</p>
+<p>K_ads: varies (e.g., 1–10 m³/kg)</p>
+<p>Source: Kuo et al. (2012)</p>
+</section>
+<section id="methanogenesis-optional" class="level2">
+<h2><strong>Methanogenesis (Optional)</strong></h2>
+<p>Methanogenesis is the final biochemical step in anaerobic digestion.
+In this reaction, acetate and hydrogen are converted into methane and
+carbon dioxide by obligate anaerobic archaea called methanogens (Zeikus,
+1977). I</p>
+<ol type="1">
+<li><p><strong><mark>Acetoclastic
+Methanogenesis:</mark></strong></p></li>
+</ol>
+<p>The acetoclastic pathway converts acetate to methane and carbon
+dioxide, while the hydrogenotrophic pathway combines hydrogen with
+carbon dioxide to form methane.</p>
+<p><strong>Chemical Reaction (</strong>Acetoclastic Pathway:)</p>
+<p>\text{CH}_3\text{COO}^{-} + \text{H}^{+} \rightarrow \text{CH}_4 +
+\text{CO}_2</p>
+<p><strong>Reactants:</strong></p>
+<ul>
+<li><p>Acetate (CH3COO^-)</p></li>
+<li><p>Hydrogen (H2)</p></li>
+<li><p>Carbon dioxide (CO2)</p></li>
+</ul>
+<p><strong>Products:</strong></p>
+<ul>
+<li><p>Methane (CH4)</p></li>
+<li><p>Carbon dioxide (CO2)</p></li>
+<li><p>Water (H2O)</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{\text{meth,acetate}} = \mu_{\text{meth}} \cdot
+\frac{S_{\text{acetate}}}{K_{\text{S,acetate}} + S_{\text{acetate}}}
+\cdot X_{\text{meth}}</p>
+<p>For acetoclastic pathway, r_meth,acetate refers to mol methane
+generated.</p>
+<p><strong>Typical Constants:</strong></p>
+<ul>
+<li><p>Units: mol methane produced per m3 per second.</p></li>
+<li><p>mu_meth ranges 1e-6 to 5e-6 per second (Zeikus, 1977).</p></li>
+<li><p>mu_meth,H2 ranges 1e-6 to 4e-6 per second (Angelidaki &amp;
+Sanders, 2004).</p></li>
+<li><p>K_S,acetate ranges 5e-4 to 2e-3 mol per m3 (Batstone et al.,
+2002).</p></li>
+<li><p>K_S,H2 ranges 1e-5 to 1e-4 mol per m3 (Batstone et al.,
+2002).</p></li>
+<li><p>theta_meth typically 1.03 to 1.06 per °C between 20 and 40 °C
+(Batstone et al., 2002).</p></li>
+</ul>
+<ol start="2" type="1">
+<li><p><mark>Hydrogenotrophic Pathway:</mark></p></li>
+</ol>
+<p><strong>Chemical Reaction:</strong></p>
+<p>4 \cdot \text{H}_2 + \text{CO}_2 \rightarrow \text{CH}_4 + 2 \cdot
+\text{H}_2\text{O}</p>
+<section id="example-species-1" class="level3">
+<h3><strong>Example Species</strong></h3>
+<p><strong>Reactants:</strong></p>
+<ul>
+<li><p>Acetate (CH3COO^-)</p></li>
+<li><p>Hydrogen (H2)</p></li>
+<li><p>Carbon dioxide (CO2)</p></li>
+</ul>
+<p><strong>Products:</strong></p>
+<ul>
+<li><p>Methane (CH4)</p></li>
+<li><p>Carbon dioxide (CO2)</p></li>
+<li><p>Water (H2O)</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{\text{meth,H2}} = \mu_{\text{meth,H2}} \cdot
+\frac{S_{\text{H2}}}{K_{\text{S,H2}} + S_{\text{H2}}} \cdot
+X_{\text{meth}}</p>
+<p>These equations use <strong>Monod kinetics</strong> (Batstone et al.,
+2002):</p>
+<ul>
+<li><p><strong>mu_meth</strong> is the maximum specific growth rate of
+methanogens on acetate.</p></li>
+<li><p><strong>mu_meth,H2</strong> is the maximum specific growth rate
+on hydrogen.</p></li>
+<li><p><strong>S_acetate</strong> is the substrate concentration of
+acetate in mol per m3.</p></li>
+<li><p><strong>S_H2</strong> is the substrate concentration of hydrogen
+gas in mol per m3.</p></li>
+<li><p><strong>K_S,acetate</strong> and <strong>K_S,H2</strong> are the
+half-saturation constants.</p></li>
+<li><p><strong>X_meth</strong> is the methanogen biomass concentration
+in kg per m3.<br />
+The rate expression predicts methane production based on substrate
+availability and microbial density. The moles in the numerator refer to
+the <strong>reactant consumed</strong> (acetate or hydrogen), and the
+resulting methane produced is stoichiometrically related.</p></li>
+</ul>
+<p><strong>Units</strong></p>
+<ul>
+<li><p>Units: mol methane produced per m3 per second.</p></li>
+<li><p>For acetoclastic pathway, r_meth,acetate refers to mol methane
+generated.</p></li>
+<li><p>For hydrogenotrophic pathway, r_meth,H2 refers to mol methane
+generated.</p></li>
+</ul>
+</section>
+<section id="constants-and-references" class="level3">
+<h3><strong>Constants and References</strong> </h3>
+<ul>
+<li><p>mu_meth: Maximum specific growth rate on acetate = 3e-6 per
+second (Batstone et al., 2002).</p></li>
+<li><p>mu_meth,H2: Maximum specific growth rate on hydrogen = 2e-6 per
+second (Batstone et al., 2002).</p></li>
+<li><p>K_S,acetate: Half-saturation constant for acetate = 1e-3 mol per
+m3. This mol refers to acetate (Batstone et al., 2002).</p></li>
+<li><p>K_S,H2: Half-saturation constant for hydrogen = 5e-5 mol per m3.
+This mol refers to hydrogen (Batstone et al., 2002).</p></li>
+<li><p>theta_meth: Temperature coefficient = 1.04 per °C (applies to
+mu_meth and mu_meth,H2) (Batstone et al., 2002).</p></li>
+</ul>
+</section>
+<section id="typical-ranges-of-constants" class="level3">
+<h3><strong>Typical Ranges of Constants</strong></h3>
+<ul>
+<li><p>mu_meth ranges 1e-6 to 5e-6 per second (Zeikus, 1977).</p></li>
+<li><p>mu_meth,H2 ranges 1e-6 to 4e-6 per second (Angelidaki &amp;
+Sanders, 2004).</p></li>
+<li><p>K_S,acetate ranges 5e-4 to 2e-3 mol per m3 (Batstone et al.,
+2002).</p></li>
+<li><p>K_S,H2 ranges 1e-5 to 1e-4 mol per m3 (Batstone et al.,
+2002).</p></li>
+<li><p>theta_meth typically 1.03 to 1.06 per °C between 20 and 40 °C
+(Batstone et al., 2002).</p></li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3><strong>References</strong></h3>
+<ul>
+<li><p>Zeikus, J. G. (1977). The biology of methanogenic bacteria.
+<em>Bacteriological Reviews</em>, 41(2), 514–541.</p></li>
+<li><p>Batstone, D. J., Keller, J., Angelidaki, I., Kalyuzhnyi, S. V.,
+Pavlostathis, S. G., Rozzi, A., Sanders, W. T., Siegrist, H., &amp;
+Vavilin, V. A. (2002). <em>The IWA Anaerobic Digestion Model No.1
+(ADM1)</em>. Water Science and Technology, 45(10), 65–73. Download
+link</p></li>
+<li><p>Angelidaki, I., &amp; Sanders, W. (2004). Assessment of the
+anaerobic biodegradability of macropollutants. <em>Reviews in
+Environmental Science and Bio/Technology</em>, 3(2), 117–129.</p></li>
+</ul>
+<p><strong>Nitrification</strong></p>
+<p>Nitrification is the aerobic, chemoautotrophic biological oxidation
+of ammonium to nitrate. It is a two-step process mediated by specialized
+bacterial guilds. I</p>
+<ol type="1">
+<li><p><mark>Ammonia Oxidation (Nitrosomonas)</mark></p></li>
+</ol>
+<p>Ammonia oxidation is the first step in nitrification and is carried
+out by <strong>ammonia-oxidizing bacteria (AOB)</strong> such as
+<em>Nitrosomonas europaea</em> (Prosser, 1989). T<strong>Chemical
+Reaction</strong></p>
+<p>\text{NH}_4^{+} + 1.5 \cdot \text{O}_2 \rightarrow \text{NO}_2^{-} +
+2 \cdot \text{H}^{+} + \text{H}_2\text{O}</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p>Reactant: Ammonium ion (NH4+)</p></li>
+<li><p>Products: Nitrite ion (NO2-), protons (H+), water (H2O)</p></li>
+</ul>
+<p><strong>Rate Expression</strong></p>
+<p>r_{\text{nit,amm}} = \mu_{\text{AOB}} \cdot
+\frac{S_{\text{NH4}}}{K_{\text{S,NH4}} + S_{\text{NH4}}} \cdot
+\frac{S_{\text{O2}}}{K_{\text{S,O2}} + S_{\text{O2}}} \cdot
+X_{\text{AOB}}</p>
+<ul>
+<li><p><strong>Explanation of Rate Expression:</strong><br />
+This is a <strong>double Monod expression</strong>, reflecting substrate
+limitation by <strong>ammonium</strong> and
+<strong>oxygen</strong>:</p></li>
+<li><p>mu_AOB is the <strong>maximum specific growth rate of
+AOB</strong> (per second), reflecting how fast AOB can grow when both
+substrates are abundant.</p>
+<ul>
+<li><p>Typical range: 2e-6 to 6e-6 per second.</p></li>
+<li><p><em>Reference</em>: Henze et al. (2000).</p></li>
+</ul></li>
+<li><p>S_NH4 is the ammonium concentration in mol per cubic
+meter.</p></li>
+<li><p>K_S,NH4 is the <strong>half-saturation constant for
+ammonium</strong> in mol per cubic meter.</p>
+<ul>
+<li><p>It is the concentration at which the growth rate is half of
+mu_AOB.</p></li>
+<li><p>Typical range: 1e-4 to 4e-4 mol/m3.</p></li>
+<li><p><em>Reference</em>: Henze et al. (2000).</p></li>
+</ul></li>
+<li><p>S_O2 is the dissolved oxygen concentration in mol per cubic
+meter.</p></li>
+<li><p>K_S,O2,AOB is the <strong>oxygen half-saturation
+constant</strong> in mol per cubic meter.</p>
+<ul>
+<li><p>Reflects oxygen affinity of AOB.</p></li>
+<li><p>Typical range: 2e-5 to 1e-4 mol/m3.</p></li>
+<li><p><em>Reference</em>: Henze et al. (2000).</p></li>
+</ul></li>
+<li><p>X_AOB is the active biomass concentration of AOB in
+kg/m3.</p></li>
+<li><p><strong>The moles in the rate r refer to moles of ammonium
+oxidized per cubic meter per second.</strong></p></li>
+<li></li>
+</ul>
+<p><strong>Units of Reaction Rate:</strong><br />
+mol NH4+ oxidized / m3 / second</p>
+<p><strong>Constants:</strong></p>
+<ul>
+<li><p>mu_AOB: maximum growth rate = 4e-6 per second (Henze et al.,
+2000).</p></li>
+<li><p>K_S,NH4: half-saturation ammonium = 2e-3 mol per m3 (refers to
+ammonium).</p></li>
+<li><p>K_S,O2: oxygen half-saturation = 2e-4 mol per m3 (refers to
+O2).</p></li>
+<li><p>theta_AOB: temperature coefficient = 1.07 per °C (Henze et al.,
+2000).</p></li>
+</ul>
+<p><strong>Typical Ranges of Constants:</strong></p>
+<ul>
+<li><p>mu_AOB: 2e-6 to 5e-6 per second. Henze et al. (2000)</p></li>
+<li><p>K_S,NH4: 1e-3 to 3e-3 mol per m3. Henze et al. (2000)</p></li>
+<li><p>K_S,O2: 1e-4 to 3e-4 mol per m3. Henze et al. (2000)</p></li>
+<li><p>theta_AOB: 1.06 to 1.08 per °C over 15–35 °C. Blackburne et al.
+(2007)</p></li>
+</ul>
+<p><strong>Temperature Correction and Correlation:</strong><br />
+theta_AOB applies to mu_AOB. For example, at 25 °C, mu_AOB increases by
+factor of 1.07^(25–20) = approx 1.40 (Henze et al., 2000).</p>
+<ol type="1">
+<li><p><strong><mark>Nitrite Oxidation
+(Nitrobacter)</mark></strong></p></li>
+</ol>
+<p>Nitrite oxidation is the second nitrification step, converting
+nitrite to nitrate.</p>
+<p><strong>Chemical Reaction</strong></p>
+<p>\text{NO}_2^{-} + 0.5 \cdot \text{O}_2 \rightarrow
+\text{NO}_3^{-}</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p>Reactant: Nitrite ion (NO2-)</p></li>
+<li><p>Product: Nitrate ion (NO3-)</p></li>
+</ul>
+<p><strong>Rate Expression</strong></p>
+<p>r_{\text{nit,nitrite}} = \mu_{\text{NOB}} \cdot
+\frac{S_{\text{NO2}}}{K_{\text{S,NO2}} + S_{\text{NO2}}} \cdot
+\frac{S_{\text{O2}}}{K_{\text{S,O2,NOB}} + S_{\text{O2}}} \cdot
+X_{\text{NOB}}</p>
+<p><strong>Explanation of Rate Expression:</strong><br />
+Monod-type kinetics: This is a Monod model describing substrate-limited
+growth:</p>
+<ul>
+<li><p>mu_NOB: maximum specific growth rate of nitrite oxidizers.
+Maximum specific growth rate of Nitrobacter (per second). It represents
+the rate of biomass growth under non-limiting conditions.</p></li>
+<li><p>S_NO2: nitrite concentration in mol per m3.</p></li>
+<li><p>K_S,NO2: Half-saturation constant for nitrite (mol per cubic
+meter), referring to the nitrite concentration at which the reaction
+proceeds at half the maximum rate.</p></li>
+<li><p>S_O2: Dissolved oxygen concentration in mol per cubic
+meter.</p></li>
+<li><p>K_S,O2,NOB: Half-saturation constant for oxygen (mol per cubic
+meter), referring to the oxygen concentration for half-maximal
+activity.</p></li>
+<li><p>X_NOB: Biomass concentration of Nitrobacter in kg per cubic
+meter.</p></li>
+</ul>
+<p><strong>Units of Reaction Rate:</strong><br />
+mol NO2- oxidized per m3 per second. The moles in the rate (r) refer
+specifically to moles of nitrite oxidized per unit volume per time.</p>
+<p><strong>Constants</strong></p>
+<ul>
+<li><p>mu_NOB: 3e-6 per second (Henze et al., 2000).</p></li>
+</ul>
+<ul>
+<li><p>K_S,NO2: 1e-3 mol per m3 (refers to nitrite).</p></li>
+<li><p>K_S,O2,NOB: 1e-4 mol per m3 (refers to O2).</p></li>
+<li><p>theta_NOB: 1.06 per °C (Henze et al., 2000).</p></li>
+</ul>
+<p><strong>Typical Ranges of Constants:</strong></p>
+<ul>
+<li><p>mu_NOB: 1e-6 to 4e-6 per second. Reference: Henze et al.
+(2000)</p></li>
+<li><p>K_S,NO2: 5e-4 to 2e-3 mol per m3. Reference: Henze et al.
+(2000)</p></li>
+<li><p>K_S,O2,NOB: 5e-5 to 2e-4 mol per m3. Reference: Henze et al.
+(2000)</p></li>
+<li><p>theta_NOB: 1.05–1.07 per °C. Reference: Siegrist &amp; Gujer
+(1995)</p></li>
+</ul>
+<p><strong>Temperature Correction and Correlation:</strong><br />
+theta_NOB applies to mu_NOB. For 30 °C, mu_NOB is multiplied by
+1.06^(30–20) = ~1.79.</p>
+</section>
+<section id="references-1" class="level3">
+<h3><strong>References:</strong></h3>
+<ul>
+<li><p>Prosser, J.I. (1989). Autotrophic nitrification in bacteria.
+<em>Advances in Microbial Physiology</em>.</p></li>
+<li><p>Henze, M. et al. (2000). <em>Activated Sludge Model No.1</em>.
+IWA Publishing.</p></li>
+<li><p>Blackburne, R. et al. (2007). Partial nitrification to nitrite
+using low dissolved oxygen concentration as the main selection factor.
+<em>Biodegradation</em>.</p></li>
+<li><p>Siegrist, H., Gujer, W. (1995). <em>Nitrogen removal in activated
+sludge systems</em>. Water Science and Technology.</p></li>
+</ul>
+<p><strong>Denitrification</strong></p>
+<p>Denitrification is critical for nitrogen removal and climate
+considerations (due to N₂O emissions). It is the stepwise biological
+reduction of oxidized nitrogen compounds (primarily nitrate and nitrite)
+into gaseous nitrogen forms (N₂O and ultimately N₂ gas) and is
+responsible for removing bioavailable nitrogen from wastewater.</p>
+<ol type="1">
+<li><p><mark>Reaction 1 – Nitrate Reduction to Nitrite</mark></p></li>
+</ol>
+<p>This reaction reduces nitrate (NO3-) to nitrite (NO2-) under anoxic
+conditions. Facultative anaerobic heterotrophic bacteria couple the
+oxidation of organic carbon to the reduction of nitrate. The enzyme
+involved is nitrate reductase (Nar). This is often the fastest step of
+denitrification.</p>
+<p><strong>Reference:</strong> Payne, 1981; Tiedje, 1982.</p>
+<p><strong>Chemical Reaction</strong></p>
+<p>NO_{3}^{-} + 2 \cdot H^{+} + 2 \cdot e^{-} \rightarrow NO_{2}^{-} +
+H_{2}O</p>
+</section>
+<section id="example-species-2" class="level3">
+<h3><strong>Example Species:</strong></h3>
+<p><strong>Reactants:</strong></p>
+<ul>
+<li><p>Nitrate (NO3-)</p></li>
+<li><p>Acetate (CH3COO-)</p></li>
+</ul>
+<p><strong>Products:</strong></p>
+<ul>
+<li><p>Nitrite (NO2-)</p></li>
+<li><p>Water (H2O)</p></li>
+</ul>
+<p><strong>Rate Expression</strong></p>
+<p>r_{NO3^{-}} = \mu_{max} \cdot \frac{S_{NO3^{-}}}{K_{S,NO3^{-}} +
+S_{NO3^{-}}} \cdot \frac{S_{COD}}{K_{S,COD} + S_{COD}} \cdot X_{DEN}</p>
+<p>Explanation of Rate Expression</p>
+<p>This is a Monod-based model describing the specific nitrate
+consumption rate.</p>
+<ul>
+<li><p>r_NO3- represents the moles of nitrate consumed per cubic meter
+reactor volume per second.</p></li>
+<li><p>S_NO3- is the nitrate concentration in mol per cubic
+meter.</p></li>
+<li><p>S_COD is the readily biodegradable chemical oxygen demand
+concentration in mol C per cubic meter.</p></li>
+<li><p>mu_max is the maximum specific growth rate of denitrifying
+biomass.</p></li>
+<li><p>K_S,NO3- is the half-saturation constant for nitrate.</p></li>
+<li><p>K_S,COD is the half-saturation constant for COD.</p></li>
+<li><p>X_DEN is the biomass concentration in kg per cubic
+meter.</p></li>
+</ul>
+<p>Units of r_NO3-:<br />
+mol nitrate consumed per cubic meter reactor volume per second.</p>
+<p>The "mol" refers to moles of nitrate removed.</p>
+</section>
+<section id="constants" class="level3">
+<h3><strong>Constants</strong></h3>
+<ul>
+<li><p>mu_max: maximum growth rate of denitrifiers. Typical range: 0.12
+to 0.25 per hour (converted approximately to 3.3e-5 to 6.9e-5 per
+second). This is the biological maximum rate under optimal substrate and
+temperature conditions. (Reference: Tiedje, 1982)</p></li>
+<li><p>K_S,NO3-: half-saturation constant for nitrate. Range: 0.1 to 0.5
+grams nitrogen per cubic meter. This corresponds to approximately 7e-3
+to 3.5e-2 mol nitrate per cubic meter. This is the concentration at
+which nitrate reduction rate is 50% of mu_max. (Reference: van
+Loosdrecht et al., 2002)</p></li>
+<li><p>K_S,COD: half-saturation constant for COD. Range: 20 to 50 grams
+COD per cubic meter, equivalent to 0.625 to 1.56 mol C per cubic meter.
+(Reference: Henze et al., 2000)</p></li>
+<li><p>theta_mu: temperature coefficient. Typical value: 1.07. This
+means that the rate increases by about 7% per degree Celsius.
+(Reference: Henze et al., 2000)</p></li>
+</ul>
+</section>
+<section id="temperature-correction" class="level3">
+<h3><strong>Temperature Correction</strong></h3>
+<p>Temperature correction applies to mu_max. It is described by the
+Arrhenius relationship:</p>
+<p>\mu_{T} = \mu_{20} \cdot \theta^{(T - 20)}</p>
+<p>where theta is 1.07, T is the reactor temperature in degrees Celsius,
+and mu_20 is the reference rate at 20 degrees Celsius.</p>
+<ol start="2" type="1">
+<li><p><mark>Reaction 2 – Nitrite Reduction to Nitric
+Oxide</mark></p></li>
+</ol>
+<p>This step of denitrification reduces nitrite (NO2-) to nitric oxide
+(NO).</p>
+<p><strong>Reference:</strong> Tiedje, 1982; van Loosdrecht et al.,
+2002.</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>NO_{2}^{-} + 2 \cdot H^{+} + e^{-} \rightarrow NO + H_{2}O</p>
+</section>
+<section id="example-species-3" class="level3">
+<h3><strong>Example Species:</strong></h3>
+<p><strong>Reactants:</strong></p>
+<ul>
+<li><p>Nitrite (NO2-)</p></li>
+<li><p>Acetate (CH3COO-) as electron donor</p></li>
+</ul>
+<p><strong>Products:</strong></p>
+<ul>
+<li><p>Nitric oxide (NO)</p></li>
+<li><p>Water (H2O)</p></li>
+</ul>
+<p><strong>Rate Expression</strong></p>
+<p>r_{NO2^{-}} = \mu_{max} \cdot \frac{S_{NO2^{-}}}{K_{S,NO2^{-}} +
+S_{NO2^{-}}} \cdot \frac{S_{COD}}{K_{S,COD} + S_{COD}} \cdot X_{DEN}</p>
+</section>
+<section id="explanation-of-rate-expression" class="level3">
+<h3><strong>Explanation of Rate Expression</strong></h3>
+<p>This is a Monod model describing nitrite reduction rate.</p>
+<ul>
+<li><p>r_NO2- is the moles of nitrite reduced per cubic meter reactor
+volume per second.</p></li>
+<li><p>S_NO2- represents the nitrite concentration in mol per cubic
+meter.</p></li>
+<li><p>S_COD is the concentration of soluble readily biodegradable
+organic carbon (acetate) in mol C per cubic meter.</p></li>
+<li><p>mu_max is the maximum specific growth rate of nitrite-reducing
+denitrifying biomass.</p></li>
+<li><p>K_S,NO2- is the half-saturation constant for nitrite.</p></li>
+<li><p>K_S,COD is the half-saturation constant for COD.</p></li>
+<li><p>X_DEN is the active biomass concentration in kg per cubic
+meter.</p></li>
+</ul>
+<p><strong>Units of r_NO2-:</strong><br />
+mol nitrite consumed per cubic meter per second.</p>
+<p>Here the “mol” refers to moles of nitrite removed.</p>
+</section>
+<section id="constants-reference-henze-et-al.-2000." class="level3">
+<h3><strong>Constants</strong> Reference: Henze et al., 2000.</h3>
+<ul>
+<li><p>mu_max: maximum growth rate of nitrite-reducing bacteria.</p>
+<ul>
+<li><p>Typical range: 0.08 to 0.20 per hour (2.2e-5 to 5.6e-5 per
+second)</p></li>
+<li><p>Reference: Tiedje, 1982.</p></li>
+</ul></li>
+<li><p>K_S,NO2-: half-saturation constant for nitrite.</p>
+<ul>
+<li><p>Range: 0.05 to 0.3 grams N per cubic meter (~3.6e-3 to 2.1e-2 mol
+per cubic meter).</p></li>
+<li><p>Reference: van Loosdrecht et al., 2002.</p></li>
+</ul></li>
+<li><p>K_S,COD: half-saturation constant for COD.</p>
+<ul>
+<li><p>Range: 20 to 50 grams COD per cubic meter (~0.625 to 1.56 mol C
+per cubic meter).</p></li>
+<li><p>Reference: Henze et al., 2000.</p></li>
+</ul></li>
+<li><p>theta_mu: temperature coefficient (applies to mu_max).</p>
+<ul>
+<li><p>Value: 1.07 (meaning ~7% increase in rate per °C).</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="h.-temperature-correction" class="level3">
+<h3><strong>H. Temperature Correction</strong></h3>
+<p>Temperature correction uses the Arrhenius relation</p>
+<p>\mu_{T} = \mu_{20} \cdot \theta^{(T - 20)}</p>
+<ul>
+<li><p>mu_20 is the reference maximum growth rate at 20 °C.</p></li>
+<li><p>theta is 1.07.</p></li>
+<li><p>T is the operating temperature (°C).</p></li>
+</ul>
+</section>
+</section>
+<section id="reaction-3-nitric-oxide-reduction-to-nitrous-oxide"
+class="level2">
+<h2><mark>Reaction 3: Nitric Oxide Reduction to Nitrous
+Oxide</mark></h2>
+<p>This step reduces nitric oxide (NO) to nitrous oxide (N2O).</p>
+<p><strong>Reference:</strong> Tiedje, 1982; Richardson et al.,
+2001.</p>
+<p><strong>Chemical Reaction</strong></p>
+<p>2 \cdot NO + 2 \cdot H^{+} + 2 \cdot e^{-} \rightarrow N_{2}O +
+H_{2}O</p>
+<section id="example-species-4" class="level3">
+<h3><strong>Example Species</strong></h3>
+<p><strong>Reactants:</strong></p>
+<ul>
+<li><p>Nitric oxide (NO)</p></li>
+<li><p>Acetate (CH3COO-) as electron donor</p></li>
+</ul>
+<p><strong>Products:</strong></p>
+<ul>
+<li><p>Nitrous oxide (N2O)</p></li>
+<li><p>Water (H2O)</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{NO} = \mu_{max} \cdot \frac{S_{NO}}{K_{S,NO} + S_{NO}} \cdot
+\frac{S_{COD}}{K_{S,COD} + S_{COD}} \cdot X_{DEN}</p>
+</section>
+<section id="explanation-of-rate-expression-1" class="level3">
+<h3><strong>Explanation of Rate Expression:</strong></h3>
+<p>This is a Monod-type expression describing NO reduction:</p>
+<ul>
+<li><p>r_NO is the moles of nitric oxide consumed per cubic meter per
+second.</p></li>
+<li><p>S_NO is nitric oxide concentration (mol per cubic
+meter).</p></li>
+<li><p>S_COD is soluble readily biodegradable organic carbon (mol C per
+cubic meter).</p></li>
+<li><p>mu_max is the maximum specific growth rate of NO-reducing
+denitrifiers.</p></li>
+<li><p>K_S,NO is the half-saturation constant for NO.</p></li>
+<li><p>K_S,COD is the half-saturation constant for COD.</p></li>
+<li><p>X_DEN is active denitrifying biomass concentration (kg per cubic
+meter).</p></li>
+</ul>
+</section>
+<section id="units-and-interpretation" class="level3">
+<h3><strong>Units and Interpretation:</strong></h3>
+<p><strong>Units of r_NO:</strong><br />
+mol nitric oxide reduced per cubic meter per second.</p>
+<p>“mol” refers to moles of NO removed.</p>
+</section>
+<section id="constants-1" class="level3">
+<h3><strong>Constants:</strong></h3>
+<ul>
+<li><p>mu_max:</p>
+<ul>
+<li><p>Maximum growth rate of NO reducers.</p></li>
+<li><p>Typical range: 0.05 to 0.15 per hour (1.4e-5 to 4.2e-5 per
+second).</p></li>
+<li><p>Reference: Richardson et al., 2001.</p></li>
+</ul></li>
+<li><p>K_S,NO:</p>
+<ul>
+<li><p>Half-saturation for NO.</p></li>
+<li><p>Range: 1e-6 to 5e-6 mol per cubic meter.</p></li>
+<li><p>Reference: Richardson et al., 2001.</p></li>
+</ul></li>
+<li><p>K_S,COD:</p>
+<ul>
+<li><p>Half-saturation for COD.</p></li>
+<li><p>Range: 0.625 to 1.56 mol C per cubic meter.</p></li>
+<li><p>Reference: Henze et al., 2000.</p></li>
+</ul></li>
+<li><p>theta_mu:</p>
+<ul>
+<li><p>Temperature coefficient for mu_max.</p></li>
+<li><p>Value: 1.06.</p></li>
+<li><p>Reference: Tiedje, 1982.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="temperature-correction-1" class="level3">
+<h3><strong>Temperature Correction</strong></h3>
+<p>Temperature adjustment uses Arrhenius-type relationship:</p>
+<p>\mu_{T} = \mu_{20} \cdot \theta^{(T - 20)}</p>
+<ul>
+<li><p>mu_20: reference mu_max at 20 °C.</p></li>
+<li><p>theta: 1.06.</p></li>
+<li><p>T: actual temperature (°C)</p></li>
+</ul>
+</section>
+<section id="reference-for-this-reaction" class="level3">
+<h3><strong>Reference for this Reaction:</strong></h3>
+<ul>
+<li><p>Tiedje J.M. (1982). Denitrification.</p></li>
+<li><p>Richardson D.J. et al. (2001). <em>Biochimica et Biophysica
+Acta</em>.</p></li>
+<li><p>Henze M. et al. (2000). <em>Activated Sludge
+Models</em>.</p></li>
+</ul>
+</section>
+<section id="reference-for-this-reaction-1" class="level3">
+<h3><strong>Reference for this Reaction</strong></h3>
+<ul>
+<li><p>Payne W.J. (1981). <em>Denitrification</em>.
+Wiley-Interscience.</p></li>
+<li><p>Tiedje J.M. (1982). Denitrification. <em>Antonie van
+Leeuwenhoek</em>.</p></li>
+<li><p>Henze M. et al. (2000). <em>Activated Sludge Models</em>.
+IWA.</p></li>
+<li><p>van Loosdrecht M.C.M. et al. (2002). <em>Biological Wastewater
+Treatment</em>. IWA.</p></li>
+</ul>
+</section>
+<section id="reference-for-this-reaction-2" class="level3">
+<h3><strong>Reference for this Reaction</strong></h3>
+<ul>
+<li><p>Tiedje J.M. (1982). Denitrification. <em>Antonie van
+Leeuwenhoek</em>.</p></li>
+<li><p>van Loosdrecht M.C.M. et al. (2002). <em>Biological Wastewater
+Treatment</em>. IWA.</p></li>
+<li><p>Henze M. et al. (2000). <em>Activated Sludge Models</em>.
+IWA.</p></li>
+</ul>
+<p><mark>Reaction 4: Nitrous Oxide Reduction to Nitrogen Gas</mark></p>
+<p>This final denitrification step converts nitrous oxide (N2O) into
+dinitrogen gas (N2), completing the nitrogen removal process.(Tiedje,
+1982; Richardson et al., 2009).</p>
+</section>
+<section id="chemical-reaction" class="level3">
+<h3><strong>Chemical Reaction</strong></h3>
+<p>N_{2}O + 2 \cdot H^{+} + 2 \cdot e^{-} \rightarrow N_{2} + H_{2}O</p>
+</section>
+<section id="example-species-5" class="level3">
+<h3><strong>Example Species</strong></h3>
+<p><strong>Reactants:</strong></p>
+<ul>
+<li><p>Nitrous oxide (N2O)</p></li>
+<li><p>Acetate (CH3COO-) as electron donor</p></li>
+</ul>
+<p><strong>Products:</strong></p>
+<ul>
+<li><p>Dinitrogen gas (N2)</p></li>
+<li><p>Water (H2O)</p></li>
+</ul>
+</section>
+<section id="rate-expression" class="level3">
+<h3><strong>Rate Expression</strong></h3>
+<p>r_{N2O} = \mu_{max} \cdot \frac{S_{N2O}}{K_{S,N2O} + S_{N2O}} \cdot
+\frac{S_{COD}}{K_{S,COD} + S_{COD}} \cdot X_{DEN}</p>
+<p><strong>Explanation of Rate Expression</strong></p>
+<p>This Monod-type expression models N2O reduction:</p>
+<ul>
+<li><p>r_N2O is the moles of N2O consumed per cubic meter per
+second.</p></li>
+<li><p>S_N2O is nitrous oxide concentration (mol per cubic
+meter).</p></li>
+<li><p>S_COD is soluble readily biodegradable carbon (mol C per cubic
+meter).</p></li>
+<li><p>mu_max is the maximum growth rate of N2O reducers.</p></li>
+<li><p>K_S,N2O is the half-saturation constant for N2O.</p></li>
+<li><p>K_S,COD is the half-saturation constant for COD.</p></li>
+<li><p>X_DEN is active denitrifying biomass concentration (kg per cubic
+meter).</p></li>
+</ul>
+</section>
+<section id="units-and-interpretation-1" class="level3">
+<h3><strong>Units and Interpretation</strong></h3>
+<p>Units of r_N2O:<br />
+mol nitrous oxide reduced per cubic meter per second.</p>
+<p><strong>Constants</strong></p>
+<ul>
+<li><p>mu_max:</p>
+<ul>
+<li><p>Maximum specific growth rate of N2O reducers.</p></li>
+<li><p>Typical range: 0.03 to 0.12 per hour (8.3e-6 to 3.3e-5 per
+second).</p></li>
+<li><p>Reference: Richardson et al., 2009.</p></li>
+</ul></li>
+<li><p>K_S,N2O:</p>
+<ul>
+<li><p>Half-saturation constant for N2O.</p></li>
+<li><p>Range: 5e-7 to 1e-6 mol per cubic meter.</p></li>
+<li><p>Reference: Richardson et al., 2009.</p></li>
+</ul></li>
+<li><p>K_S,COD:</p>
+<ul>
+<li><p>Half-saturation for COD.</p></li>
+<li><p>Range: 0.625 to 1.56 mol C per cubic meter.</p></li>
+<li><p>Reference: Henze et al., 2000.</p></li>
+</ul></li>
+<li><p>theta_mu:</p>
+<ul>
+<li><p>Temperature coefficient for mu_max.</p></li>
+<li><p>Value: 1.07.</p></li>
+<li><p>Reference: Tiedje, 1982.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="temperature-correction-2" class="level3">
+<h3><strong>Temperature Correction</strong></h3>
+<p>Temperature dependence is described by:</p>
+<p>\mu_{T} = \mu_{20} \cdot \theta^{(T - 20)}</p>
+<ul>
+<li><p>mu_20: Reference mu_max at 20 °C.</p></li>
+<li><p>theta: 1.07.</p></li>
+<li><p>T: Temperature (°C).</p></li>
+</ul>
+<p>Combined References</p>
+<ol type="1">
+<li><p>Henze, M., Grady, C.P.L., Gujer, W., Marais, G.v.R., &amp;
+Matsuo, T. (2000). <em>Activated Sludge Models ASM1, ASM2, ASM2d and
+ASM3</em>. IWA Publishing. Link</p></li>
+<li><p>Tchobanoglous, G., Burton, F.L., Stensel, H.D., et al. (2014).
+<em>Wastewater Engineering: Treatment and Resource Recovery</em>, 5th
+Ed. McGraw-Hill.</p></li>
+<li><p>Richardson, D.J., Felgate, H., Watmough, N.J., Thomson, A.J.,
+&amp; Baggs, E.M. (2009). Mitigating the environmental impact of nitrous
+oxide. <em>Nature Reviews Microbiology</em>, 7(7), 527–536. DOI</p></li>
+<li><p>Grady, C.P.L., Daigger, G.T., Love, N.G., &amp; Filipe, C.D.M.
+(1999). <em>Biological Wastewater Treatment</em>. CRC Press.</p></li>
+<li><p>Pochana, K., &amp; Keller, J. (1999). Study of factors affecting
+simultaneous nitrification and denitrification (SND). <em>Water Science
+&amp; Technology</em>, 39(6), 61–68. DOI</p></li>
+<li><p>Metcalf &amp; Eddy (2014). <em>Wastewater Engineering: Treatment
+and Reuse</em>. McGraw-Hill.</p></li>
+<li><p>Knowles R. (1982). <em>Denitrification</em>. Microbiological
+Reviews.</p></li>
+<li><p>Payne W. J. (1981). <em>Denitrification</em>.
+Wiley-Interscience.</p></li>
+<li><p>Tiedje J. M., et al. (1982). <em>Denitrification: ecological
+niches, competition and survival.</em> Antonie van Leeuwenhoek.</p></li>
+</ol>
+</section>
+<section id="reference-for-this-reaction-3" class="level3">
+<h3><strong>Reference for this Reaction</strong></h3>
+<ul>
+<li><p>Payne W.J. (1981). <em>Denitrification</em>.
+Wiley-Interscience.</p></li>
+<li><p>Tiedje J.M. (1982). Denitrification. <em>Antonie van
+Leeuwenhoek</em>.</p></li>
+<li><p>Henze M. et al. (2000). <em>Activated Sludge Models</em>.
+IWA.</p></li>
+<li><p>van Loosdrecht M.C.M. et al. (2002). <em>Biological Wastewater
+Treatment</em>. IWA.</p></li>
+</ul>
+</section>
+<section id="reference-for-this-reaction-4" class="level3">
+<h3><strong>Reference for this Reaction</strong></h3>
+<ul>
+<li><p>Tiedje J.M. (1982). Denitrification. <em>Antonie van
+Leeuwenhoek</em>.</p></li>
+<li><p>van Loosdrecht M.C.M. et al. (2002). <em>Biological Wastewater
+Treatment</em>. IWA.</p></li>
+<li><p>Henze M. et al. (2000). <em>Activated Sludge Models</em>.
+IWA.</p></li>
+</ul>
+</section>
+</section>
+<section id="combined-variable-list" class="level2">
+<h2><strong>Combined Variable List</strong> </h2>
+<p>Below is a <strong>merged variable index</strong> for all
+denitrification reactions:</p>
+<ul>
+<li><p>S_NO3: Nitrate concentration (mol/m³)</p></li>
+<li><p>S_NO2: Nitrite concentration (mol/m³)</p></li>
+<li><p>S_N2O: Nitrous oxide concentration (mol/m³)</p></li>
+<li><p>S_COD: Readily biodegradable carbon (mol C/m³)</p></li>
+<li><p>X_DEN: Active denitrifying biomass (kg/m³)</p></li>
+<li><p>μ_max: Maximum specific growth rate (s⁻¹)</p></li>
+<li><p>K_S,NO3: Half-saturation constant for nitrate (mol/m³)</p></li>
+<li><p>K_S,NO2: Half-saturation constant for nitrite (mol/m³)</p></li>
+<li><p>K_S,N2O: Half-saturation constant for nitrous oxide
+(mol/m³)</p></li>
+<li><p>K_S,COD: Half-saturation constant for COD (mol/m³)</p></li>
+<li><p>θ: Temperature correction coefficient (dimensionless)</p></li>
+<li><p>T: Temperature (°C)</p></li>
+<li><p>r_NO3: Rate of nitrate reduction (mol/m³·s)</p></li>
+<li><p>r_NO2: Rate of nitrite reduction (mol/m³·s)</p></li>
+<li><p>r_N2O: Rate of nitrous oxide reduction (mol/m³·s)</p></li>
+</ul>
+<p><strong>Acetogenesis</strong></p>
+<p>Acetogenesis is the conversion of volatile fatty acids (VFAs) such as
+propionate and butyrate into acetate, CO2, and hydrogen gas. (Batstone
+et al., 2002).</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>C3H6O2 + 2 \cdot H2O \rightarrow C2H4O2 + CO2 + 3 \cdot H2</p>
+<p><strong>Example Species:</strong></p>
+<p><strong>Reactants:</strong></p>
+<ul>
+<li><p>Propionate: C3H6O2</p></li>
+<li><p>Butyrate: C4H8O2</p></li>
+<li><p>Water: H2O</p></li>
+</ul>
+<p><strong>Products:</strong></p>
+<ul>
+<li><p>Acetate: C2H4O2</p></li>
+<li><p>Hydrogen: H2</p></li>
+<li><p>Carbon dioxide: CO2</p></li>
+<li><p>Biomass (generic): C5H7O2N</p></li>
+</ul>
+<p><strong>Rate Expression:</strong></p>
+<p>r_{acet} = \mu_{acet} \cdot \frac{S_{VFA}}{K_{S,VFA} + S_{VFA}} \cdot
+X_{acet}</p>
+<p><strong>Units and Moles Clarification:</strong></p>
+<ul>
+<li><p>Units of r_acet: mol·m^-3·s^-1</p></li>
+<li><p>The moles refer to <strong>moles of volatile fatty acids
+consumed</strong> per cubic meter per second.</p></li>
+<li><p>This includes all short-chain VFAs (e.g., propionate, butyrate),
+generally expressed as an acetate-equivalent mass.</p></li>
+</ul>
+<p><strong>Constants and Typical Ranges</strong></p>
+<p><strong>μ_acet</strong></p>
+<ul>
+<li><p>Maximum specific growth rate of acetogenic bacteria</p></li>
+<li><p>Typical range: 0.1 – 0.5 1/day</p></li>
+<li><p>Reference: Batstone et al. (2002)</p></li>
+</ul>
+<p><strong>K_S,VFA</strong></p>
+<ul>
+<li><p>Half-saturation constant for volatile fatty acids</p></li>
+<li><p>Typical range: 5.0 × 10^-4 – 1.0 × 10^-3 mol·m^-3</p></li>
+<li><p>Reference: Batstone et al. (2002)</p></li>
+</ul>
+<p><strong>b_acet</strong></p>
+<ul>
+<li><p>Decay rate of acetogenic biomass</p></li>
+<li><p>Typical range: 0.02 – 0.06 1/day</p></li>
+<li><p>Reference: Batstone et al. (2002)</p></li>
+</ul>
+<p><strong>Temperature Correction Details</strong></p>
+<p><strong>θ_acet</strong></p>
+<ul>
+<li><p>Temperature coefficient for μ_acet</p></li>
+<li><p>Typical value: 1.03 – 1.06 (dimensionless)</p></li>
+<li><p>Applies specifically to μ_acet</p></li>
+<li><p>Temperature range: 15–35 °C</p></li>
+<li><p>Reference: Batstone et al. (2002)</p></li>
+</ul>
+</section>
+<section id="references-combined" class="level2">
+<h2><strong>References (Combined)</strong></h2>
+<ul>
+<li><p>Batstone, D. J., Keller, J., Angelidaki, I., Kalyuzhnyi, S. V.,
+Pavlostathis, S. G., Rozzi, A., Sanders, W. T., Siegrist, H., &amp;
+Vavilin, V. A. (2002). The IWA Anaerobic Digestion Model No. 1 (ADM1).
+<em>Water Science &amp; Technology</em>, 45(10), 65–73. <a
+href="https://iwa-network.org/publications/anaerobic-digestion-model-no-1-adm1/">https://iwa-network.org/publications/anaerobic-digestion-model-no-1-adm1/</a></p></li>
+<li><p>Appels, L., Baeyens, J., Degrève, J., &amp; Dewil, R. (2008).
+Principles and potential of the anaerobic digestion of waste-activated
+sludge. <em>Progress in Energy and Combustion Science</em>, 34(6),
+755–781. <a
+href="https://doi.org/10.1016/j.pecs.2008.06.002">https://doi.org/10.1016/j.pecs.2008.06.002</a></p></li>
+<li><p>McCarty, P. L., &amp; Smith, D. P. (1986). Anaerobic wastewater
+treatment. <em>Environmental Science and Technology</em>, 20(12),
+1200–1206. <a
+href="https://pubs.acs.org/doi/10.1021/es00154a001">https://pubs.acs.org/doi/10.1021/es00154a001</a></p></li>
+</ul>
+<p><strong>Acidogenesis:</strong></p>
+<p>Acidogenesis is the second stage of anaerobic digestion, following
+hydrolysis. In this process, fermentative acidogenic bacteria convert
+soluble organic monomers (such as glucose, amino acids, and fatty acids)
+into volatile fatty acids (VFAs) including acetate, propionate, and
+butyrate, as well as CO₂, H₂, and small amounts of alcohols.</p>
+<p><strong>Chemical Reaction:</strong></p>
+<p>C6H12O6 \rightarrow C2H4O2 + CO2 + H2</p>
+<p>This represents glucose conversion to acetic acid, CO₂, and
+hydrogen.</p>
+<section id="example-species-6" class="level3">
+<h3><strong>Example Species</strong></h3>
+<ul>
+<li><p><strong>Reactant:</strong> Glucose – C6H12O6</p></li>
+<li><p><strong>Products:</strong></p>
+<ul>
+<li><p>Acetic Acid – C2H4O2</p></li>
+<li><p>Carbon Dioxide – CO2</p></li>
+<li><p>Hydrogen – H2</p></li>
+</ul></li>
+</ul>
+<p>Note: Depending on substrate, VFAs can also include propionic acid
+(C3H6O2) and butyric acid (C4H8O2).</p>
+<p><strong>Rate Expression</strong></p>
+<p>Monod-type kinetics are used to describe acidogenesis. The general
+form is:</p>
+<p>r_acid = \mu_acid \cdot \frac{S}{K_S + S} \cdot X</p>
+<p>Where (Batstone et al. ,2002):</p>
+<ul>
+<li><p>r_acid is the acidogenesis rate, expressed in <strong>mol of
+substrate converted per m³ reactor volume per second</strong>
+(mol·m⁻³·s⁻¹).</p></li>
+<li><p><strong>Moles refer to reactant glucose (C6H12O6) degraded per
+unit time.</strong></p></li>
+<li><p>S is substrate concentration (mol·m⁻³).</p></li>
+<li><p>X is active biomass concentration (mol biomass
+equivalents·m⁻³).</p></li>
+</ul>
+<p>This rate accounts for substrate limitation but does not explicitly
+include hydrogen partial pressure inhibition in this form (though some
+models add a hydrogen inhibition term).</p>
+<p><strong>Maximum specific growth rate (mu_acid):</strong></p>
+<ul>
+<li><p>Value: 0.8 day⁻¹</p></li>
+<li><p>SI Units: 9.26 × 10⁻⁶ s⁻¹</p></li>
+<li><p>Refers to: Maximum conversion rate per unit biomass</p></li>
+<li><p>Source: Batstone et al., 2002</p></li>
+</ul>
+<p><strong>Half-saturation constant (K_S):</strong></p>
+<ul>
+<li><p>Value: 50 mg COD·L⁻¹ (0.050 kg COD·m⁻³)</p></li>
+<li><p>Refers to: Concentration of soluble substrate at which rate is
+half maximal</p></li>
+<li><p>Source: Batstone et al., 2002</p></li>
+</ul>
+<p><strong>Yield coefficient (Y):</strong></p>
+<ul>
+<li><p>Value: 0.1 mol biomass·mol substrate⁻¹</p></li>
+<li><p>Refers to: Moles of biomass generated per mole of glucose
+degraded</p></li>
+<li><p>Source: Batstone et al., 2002</p></li>
+</ul>
+<p><strong>Decay coefficient (b):</strong></p>
+<ul>
+<li><p>Value: 0.02 day⁻¹</p></li>
+<li><p>SI Units: 2.31 × 10⁻⁷ s⁻¹</p></li>
+<li><p>Refers to: Biomass decay rate</p></li>
+<li><p>Source: Batstone et al., 2002</p></li>
+</ul>
+<p><strong>Theta (Temperature Correction Factor):</strong></p>
+<ul>
+<li><p>Value: 1.07 per °C</p></li>
+<li><p>Refers to: Correction applied to μ_acid per degree deviation from
+35 °C</p></li>
+<li><p>Typical operational range: 15–45 °C</p></li>
+<li><p>Source: Batstone et al., 2002</p></li>
+</ul>
+</section>
+<section id="typical-ranges" class="level3">
+<h3><strong>Typical Ranges</strong></h3>
+<p><strong>mu_acid:</strong> 0.5–1.5 day⁻¹ depending on substrate
+(glucose higher, amino acids lower)<br />
+<strong>K_S:</strong> 20–100 mg COD·L⁻¹ (0.02–0.1 kg·m⁻³)<br />
+<strong>Temperature:</strong> 30–37 °C optimal mesophilic range<br />
+<strong>pH:</strong> 5.5–6.5 for maximal activity<br />
+<strong>Reference:</strong> Batstone et al., 2002; Angelidaki et al.,
+1993</p>
+</section>
+<section id="temperature-correction-3" class="level3">
+<h3><strong>Temperature Correction</strong></h3>
+<p><strong>Theta = 1.07 per °C</strong><br />
+This means for each degree Celsius above or below reference temperature
+(usually 35 °C), the rate increases or decreases by ~7%.<br />
+<strong>Reference:</strong> Batstone et al., 2002</p>
+<p><strong>References cited:</strong> Batstone et al. (2002), Angelidaki
+et al. (1993), McCarty (1964)</p>
+</section>
+<section id="list-of-references" class="level3">
+<h3><strong>List of References</strong></h3>
+<ul>
+<li><p>Batstone, D. J., et al. (2002). <em>The IWA Anaerobic Digestion
+Model No.1 (ADM1)</em>. IWA Publishing.</p></li>
+<li><p>Angelidaki, I., et al. (1993). "A mathematical model for dynamic
+simulation of anaerobic digestion of complex substrates."
+<em>Biotechnology and Bioengineering</em>.</p></li>
+<li><p>McCarty, P. L. (1964). "Anaerobic waste treatment fundamentals."
+<em>Public Works</em>.</p></li>
+</ul>
+<p><strong>Membrane Fouling (Optional Process)</strong></p>
+<p><strong>Description:</strong><br />
+Accumulation of soluble microbial products and colloids on membrane
+surfaces, reducing permeability. Usually modeled empirically or via cake
+layer resistance.</p>
+<p><strong>Empirical Fouling Rate Expression (if needed):</strong></p>
+<p>r_foul = k_foul ⋅ C_solids ⋅ TMP</p>
+<ul>
+<li><p>k_foul = fouling coefficient (system-specific, m³/(N·s))</p></li>
+<li><p>C_solids = solids concentration (kg/m³)</p></li>
+<li><p>TMP = transmembrane pressure (Pa)</p></li>
+</ul>
+<p>Fouling is often <strong>not included</strong> in biological mass
+balances but critical for filtration design.</p>
+<p><strong>Reference:</strong> Le-Clech et al. (2006)</p>
+</section>
+</section>
+<section id="fermentation" class="level2">
+<h2><strong>Fermentation</strong> </h2>
+<p>Fermentation is the anaerobic transformation of soluble and
+particulate organic matter into volatile fatty acids (VFAs), alcohols,
+hydrogen gas, ammonia, and carbon dioxide. This process generates the
+substrates for acidogenesis and methanogenesis. 2011).</p>
+<p><mark>Reaction 1 – Fermentation of Soluble Glucose</mark></p>
+<p>Fermentative bacteria convert glucose into ethanol and CO₂ under
+strictly anaerobic conditions. The main bacteria are <em>Zymomonas
+mobilis</em> and <em>Clostridium</em> species (Batstone et al.,
+2002)</p>
+<p><strong>Chemical Reaction</strong></p>
+<p>C_6H_{12}O_6 \quad \rightarrow \quad 2 \cdot CH_3CH_2OH \quad + \quad
+2 \cdot CO_2</p>
+<p><strong>Rate Expression</strong></p>
+<p>r_{ferm,glucose} \quad = \quad \mu_{F,glucose} \cdot
+\frac{S_{glucose}}{K_{S,glucose} \quad + \quad S_{glucose}} \cdot
+X_F</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p>Reactant: Glucose — C6H12O6</p></li>
+<li><p>Products: Ethanol — C2H6O, CO2</p></li>
+</ul>
+<p><strong>Units of Reaction Rate:</strong><br />
+mol glucose consumed per m3 per second.</p>
+<p><strong>Constants (plain text):</strong></p>
+<ul>
+<li><p>mu_F,glucose: Maximum specific growth rate = 1.5 per day.</p>
+<ul>
+<li><p>Refers to growth on glucose.</p></li>
+<li><p>Typical range: 0.8–2.0 per day.</p></li>
+<li><p>Reference: Batstone et al., 2002.</p></li>
+</ul></li>
+<li><p>K_S,glucose: Half-saturation constant = 2.1e-4 mol per m3.</p>
+<ul>
+<li><p>Refers to soluble glucose.</p></li>
+<li><p>Typical range: 1.0e-4 – 4.0e-4 mol per m3.</p></li>
+<li><p>Reference: McCarty &amp; Smith, 1986.</p></li>
+</ul></li>
+<li><p>X_F: Biomass concentration in kg per m3.</p></li>
+</ul>
+<p><strong>Temperature Correction:</strong></p>
+<ul>
+<li><p>Theta_F,glucose = 1.04 (dimensionless), range: 1.03–1.06.</p>
+<ul>
+<li><p>Refers to sensitivity of mu_F to temperature.</p></li>
+</ul></li>
+</ul>
+<p><mark>Reaction 2 – Fermentation of Soluble Proteins</mark></p>
+<p>Proteins are hydrolyzed and fermented to VFAs, CO2, and ammonia.
+Proteolytic bacteria such as <em>Bacteroides</em> mediate this pathway
+(Grady et al., 2011).</p>
+<p><strong>Chemical Reaction</strong></p>
+<p>C_{4.4}H_{7.3}O_{1.6}N \quad \rightarrow \quad VFAs \quad + \quad
+NH_3 \quad + \quad CO_2</p>
+<p><strong>Reaction Rate</strong></p>
+<p>r_{ferm,protein} \quad = \quad \mu_{F,protein} \cdot
+\frac{S_{protein}}{K_{S,protein} \quad + \quad S_{protein}} \cdot
+X_F</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p>Reactant: Casein hydrolysate (approx. C4.4H7.3O1.6N)</p></li>
+<li><p>Products: Acetate (C2H4O2), Propionate (C3H6O2), NH3,
+CO2</p></li>
+</ul>
+<p><strong>Units of Reaction Rate:</strong><br />
+mol protein degraded per m3 per second.</p>
+<p><strong>Constants :</strong></p>
+<ul>
+<li><p>mu_F,protein: 0.7 per day.</p>
+<ul>
+<li><p>Refers to growth on soluble proteins.</p></li>
+<li><p>Typical range: 0.5–1.0 per day.</p></li>
+<li><p>Reference: Batstone et al., 2002.</p></li>
+</ul></li>
+<li><p>K_S,protein: 3.1e-4 mol per m3.</p>
+<ul>
+<li><p>Refers to soluble protein.</p></li>
+<li><p>Typical range: 2e-4 – 5e-4 mol per m3.</p></li>
+<li><p>Reference: McCarty &amp; Smith, 1986.</p></li>
+</ul></li>
+<li><p>X_F: Biomass in kg per m3.</p></li>
+</ul>
+<p><strong>Temperature Correction:</strong></p>
+<ul>
+<li><p>Theta_F,protein: 1.04 (dimensionless), range: 1.03–1.06.</p></li>
+</ul>
+<p><mark>Reaction 3 – Fermentation of Lipids</mark></p>
+<p>Lipids are slowly hydrolyzed and fermented, producing VFAs and
+hydrogen, which can inhibit subsequent methane formation (Batstone et
+al., 2002).</p>
+<p><strong>Chemical Reaction</strong></p>
+<p>C_{57}H_{104}O_6 \quad \rightarrow \quad VFAs \quad + \quad H_2 \quad
++ \quad CO_2</p>
+<p>Reaction Rate Expression</p>
+<p>r_{ferm,lipid} \quad = \quad \mu_{F,lipid} \cdot
+\frac{S_{lipid}}{K_{S,lipid} \quad + \quad S_{lipid}} \cdot X_F</p>
+<p><strong>Example Species:</strong></p>
+<ul>
+<li><p>Reactant: Tripalmitin — C57H104O6</p></li>
+<li><p>Products: Acetate, Propionate, CO2, H2</p></li>
+</ul>
+<p><strong>Units of Reaction Rate:</strong><br />
+mol lipid degraded per m3 per second.</p>
+<p><strong>Constants (McCarty &amp; Smith, 1986):</strong></p>
+<ul>
+<li><p>mu_F,lipid: 0.3 per day.</p>
+<ul>
+<li><p>Refers to fermentative growth on lipids.</p></li>
+<li><p>Typical range: 0.2–0.5 per day.</p></li>
+<li><p>Reference: Batstone et al., 2002.</p></li>
+</ul></li>
+<li><p>K_S,lipid: 4.6e-4 mol per m3.</p>
+<ul>
+<li><p>Refers to soluble lipid.</p></li>
+<li><p>Typical range: 3e-4 – 6e-4 mol per m3.</p></li>
+<li><p>Reference: .</p></li>
+</ul></li>
+<li><p>X_F: Biomass in kg per m3.</p></li>
+</ul>
+<p><strong>Temperature Correction:</strong></p>
+<ul>
+<li><p>Theta_F,lipid: 1.03, range: 1.02–1.04.</p></li>
+</ul>
+</section>
+<section id="variable-index" class="level2">
+<h2><strong>Variable Index</strong></h2>
+<ul>
+<li><p>S_glucose: Concentration of soluble glucose, mol per m3.</p></li>
+<li><p>S_protein: Soluble protein, mol per m3.</p></li>
+<li><p>S_lipid: Soluble lipid, mol per m3.</p></li>
+<li><p>X_F: Fermentative biomass, kg per m3.</p></li>
+<li><p>mu_F: Maximum specific growth rate, per day.</p></li>
+<li><p>K_S: Half-saturation constant, mol per m3.</p></li>
+<li><p>Theta_F: Temperature coefficient (dimensionless).</p></li>
+</ul>
+</section>
+<section id="references-2" class="level2">
+<h2><strong>References</strong></h2>
+<ul>
+<li><p>Batstone DJ et al., 2002. IWA Anaerobic Digestion Model
+No.1.</p></li>
+<li><p>McCarty PL, Smith DP, 1986. Anaerobic Wastewater Treatment
+Fundamentals.</p></li>
+<li><p>Grady CP et al., 2011. Biological Wastewater Treatment, 3rd
+Ed.</p></li>
+<li><p>Tong Z, McCarty PL, 1991. Hydrolysis Kinetics in Anaerobic
+Digestion.</p></li>
+</ul>
+</section>
+<section id="pac-adsorption-1" class="level1">
+<h1><strong>PAC Adsorption</strong></h1>
+<p>PAC (Powdered Activated Carbon) adsorption is a physicochemical
+process in which dissolved contaminants adhere to the porous surface of
+PAC particles. T</p>
+<p><strong>Adsorption of Soluble Contaminant onto PAC</strong></p>
+<section id="chemical-reaction-1" class="level2">
+<h2><strong>Chemical Reaction</strong></h2>
+<p>This represents reversible binding of a dissolved contaminant to the
+activated carbon surface.</p>
+<p>Contaminant_{(aq)} \quad + \quad PAC_{(s)} \quad \leftrightarrow
+\quad Contaminant{-}PAC_{(s)}</p>
+<p>r_{ads} \quad = \quad k_{ads} \cdot PAC \cdot \frac{C}{1 \quad +
+\quad K_{ads} \cdot C}</p>
+</section>
+<section id="example-species-7" class="level2">
+<h2><strong>Example Species</strong></h2>
+<p><strong>Reactants:</strong></p>
+<ul>
+<li><p>Phenol: C6H5OH</p></li>
+<li><p>Soluble BOD (modeled as C6H12O6)</p></li>
+<li><p>Micro-pollutants (e.g., Atrazine: C8H14ClN5)</p></li>
+</ul>
+<p><strong>Products:</strong></p>
+<ul>
+<li><p>Phenol-PAC complex</p></li>
+<li><p>BOD-PAC complex</p></li>
+</ul>
+<p>These complexes are not fully specified chemically but are often
+generically referred to as Contaminant-PAC_{(s)} in literature.</p>
+</section>
+<section id="units-of-reaction-rate" class="level2">
+<h2><strong>Units of Reaction Rate</strong></h2>
+<p>The rate r_ads is measured as:<br />
+mol contaminant adsorbed per m3 liquid per second.</p>
+<p><strong>Important note:</strong><br />
+The mols refer specifically to <strong>contaminant removed from solution
+phase</strong>, not to PAC mass or site occupancy.</p>
+</section>
+<section id="constants-plain-text" class="level2">
+<h2><strong>Constants (plain text)</strong></h2>
+<ul>
+<li><p>k_ads: Adsorption rate constant.</p>
+<ul>
+<li><p>Value: 3.0e-4 m3 per mol per second.</p></li>
+<li><p>Refers to mass transfer-limited binding of dissolved contaminant
+onto PAC.</p></li>
+<li><p>Typical range: 1e-4 – 5e-4 m3 per mol per second.</p></li>
+<li><p>Reference: Kuo et al., 2012.</p></li>
+</ul></li>
+<li><p>K_ads: Langmuir equilibrium constant.</p>
+<ul>
+<li><p>Value: 1.2e2 m3 per mol.</p></li>
+<li><p>Refers to affinity of contaminant for PAC.</p></li>
+<li><p>Typical range: 1e2 – 3e2 m3 per mol.</p></li>
+<li><p>Reference: Weber &amp; DiGiano, 1996.</p></li>
+</ul></li>
+<li><p>PAC: PAC concentration.</p>
+<ul>
+<li><p>Units: kg per m3.</p></li>
+<li><p>Typical operating range: 0.05 – 1.0 kg per m3.</p></li>
+<li><p>Reference: Kuo et al., 2012.</p></li>
+</ul></li>
+</ul>
+<ul>
+<li><p>Theta_ads = 1.01 (dimensionless).</p>
+<ul>
+<li><p>Range: 1.00 – 1.02.</p></li>
+<li><p>Refers to the minor sensitivity of k_ads to temperature
+increases.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="typical-ranges-1" class="level2">
+<h2><strong>Typical Ranges</strong></h2>
+<ul>
+<li><p>k_ads: 1e-4 to 5e-4 m3/mol/s.</p></li>
+<li><p>K_ads: 1e2 to 3e2 m3/mol.</p></li>
+<li><p>PAC dose: 0.05–1.0 kg/m3.</p></li>
+<li><p>Operating temperatures: 10–35 °C.</p></li>
+</ul>
+</section>
+<section id="variable-index-1" class="level2">
+<h2><strong>Variable Index</strong></h2>
+<ul>
+<li><p>C: Concentration of dissolved contaminant (mol/m3).</p></li>
+<li><p>PAC: Powdered Activated Carbon concentration (kg/m3).</p></li>
+<li><p>k_ads: Adsorption rate constant (m3/mol/s).</p></li>
+<li><p>K_ads: Langmuir equilibrium constant (m3/mol).</p></li>
+<li><p>r_ads: Rate of adsorption (mol/m3/s).</p></li>
+<li><p>Theta_ads: Temperature coefficient for adsorption
+kinetics.</p></li>
+</ul>
+</section>
+<section id="references-3" class="level2">
+<h2><strong>References</strong></h2>
+<ul>
+<li><p>Kuo WC, et al., 2012. Lipase-producing microbes in wastewater:
+Environmental Technology.</p></li>
+<li><p>Weber WJ, DiGiano FA, 1996. Adsorption Processes for Water
+Treatment.</p></li>
+<li><p>Grady CP, Daigger GT, Love NG, Filipe CDM, 2011. Biological
+Wastewater Treatment.</p></li>
+</ul>
+</section>
+</section>
+</body>
+</html>
