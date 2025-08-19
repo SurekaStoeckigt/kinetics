@@ -1,20 +1,19 @@
-# Use the Alpine-based Pandoc image
+# Alpine-based Pandoc image
 FROM pandoc/core:3.1 AS builder
-
-# Work inside /app
 WORKDIR /app
 
-# Install Perl (needed for the bracket → $$ normalization in convert.sh)
-# If you removed that Perl line from convert.sh, you can delete this RUN.
+# Optional: Perl only if you kept the bracket→$$ post-process in convert.sh
 RUN apk add --no-cache perl
 
-# Bring in your build inputs
+# Copy files
 COPY scripts/convert.sh scripts/convert.sh
+# Normalize line endings inside the container and make executable
+RUN sed -i 's/\r$//' scripts/convert.sh && chmod +x scripts/convert.sh
+
 COPY theme/ theme/
 COPY src/ src/
-# NOTE: this COPY requires that a docs/ folder exists in your repo (even empty)
+# Keep this only if docs/ exists in your repo (even empty with .gitkeep)
 COPY docs/ docs/
 
 # Run the converter
-RUN chmod +x scripts/convert.sh
 RUN sh scripts/convert.sh
