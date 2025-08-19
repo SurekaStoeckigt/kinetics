@@ -48,6 +48,9 @@ if ls src/*.docx >/dev/null 2>&1; then
     mkdir -p "$outdir"
     pandoc "$f" \
       -o "$outdir/index.html" \
+      # Convert paragraphs like [ ... ] to $$ ... $$ for MathJax
+    perl -0777 -i -pe 's|<p>\s*\[(.*?)\]\s*</p>|<p>$$ \1 $$</p>|gs' "$outdir/index.html"
+
       --extract-media="$outdir/media" \
       --standalone \
       --toc --toc-depth=3 \
@@ -70,6 +73,8 @@ if ls docs/*.md >/dev/null 2>&1; then
     mkdir -p "$outdir"
     pandoc "$f" \
       -o "$outdir/index.html" \
+      # Convert paragraphs like [ ... ] to $$ ... $$ for MathJax
+perl -0777 -i -pe 's|<p>\s*\[(.*?)\]\s*</p>|<p>$$ \1 $$</p>|gs' "$outdir/index.html"
       --standalone \
       --toc --toc-depth=3 \
       --section-divs \
